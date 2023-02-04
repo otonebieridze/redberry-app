@@ -1,0 +1,298 @@
+:root {
+  --personal-info-header-height: 88px;
+}
+
+.personal-info {
+  width: 1098px;
+  height: 100%;
+  background-color: #eaeaea;
+}
+.vector {
+  background: transparent;
+  color: #2E2E2E;
+  position: absolute;
+  width: 15px;
+  height: 20px;
+  left: 62px;
+  top: 57px;
+  cursor: pointer;
+}
+
+/* Header */
+.personal-info-header {
+  width: 798px;
+  height: var(--personal-info-header-height);
+  background-color: transparent;
+  border-bottom: 1px solid #1A1A1A;
+  margin: auto;
+}
+.personal-info-title {
+  position: absolute;
+  width: 179px;
+  height: 29px;
+  left: 149px;
+  top: 47px;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  background-color: transparent;
+  color: #1A1A1A;
+}
+.personal-info-text {
+  position: absolute;
+  width: 29px;
+  height: 24px;
+  left: 920px;
+  top: 49px;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: right;
+  background-color: transparent;
+  color: #1A1A1A;
+}
+
+/* Form */
+form {
+  position: relative;
+}
+.name-div, .surname-div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 24px;
+  gap: 8px;
+  position: absolute;
+  width: 419px;
+  height: 122px;
+  background-color: transparent;
+  right: 126px;
+  top: calc(157px - var(--personal-info-header-height));
+}
+.name-div {
+  left: 126px;
+}
+.name-title, .surname-title {
+  width: 371px;
+  height: 21px;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  background-color: transparent;
+}
+.name-input, .surname-input {
+  box-sizing: border-box;
+  width: 365px;
+  height: 48px;
+  background: #FFFFFF;
+  color: #000000;
+  border: 1px solid #BCBCBC;
+  border-radius: 4px;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+  padding-left: 10px;
+  outline: none;
+}
+.name-validation-text, .surname-validation-text {
+  width: 371px;
+  height: 21px;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  color: #2E2E2E;
+}
+.add-photo-p {
+  position: absolute;
+  width: 232px;
+  height: 22px;
+  left: 150px;
+  top: calc(325px - var(--personal-info-header-height));
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  background-color: transparent;
+  color: #1A1A1A;
+}
+.add-photo-input {
+  display: none;
+}
+.add-photo-input-label {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px 12px;
+  gap: 10px;
+  position: absolute;
+  width: 107px;
+  height: 27px;
+  left: 401px;
+  top: calc(325px - var(--personal-info-header-height));
+  background: #0E80BF;
+  border-radius: 4px;
+  cursor: pointer;
+
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FFFFFF;
+}
+.about-you-div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 24px;
+  gap: 8px;
+  position: absolute;
+  width: 846px;
+  height: 148px;
+  background-color: transparent;
+  left: 126px;
+  top: calc(393px - var(--personal-info-header-height));
+}
+.about-you-p {
+  width: 798px;
+  height: 21px;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  color: #000000;
+}
+.about-you-textarea {
+  box-sizing: border-box;
+  width: 789px;
+  height: 90px;
+  background: #FFFFFF;
+  border: 1px solid #BCBCBC;
+  border-radius: 4px;
+  padding: 10px;
+  outline: none;
+  resize: none;
+
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: black;
+}
+.email-div, .phone-div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 24px;
+  gap: 8px;
+  position: absolute;
+  width: 846px;
+  height: 122px;
+  left: 126px;
+  top: calc(558px - var(--personal-info-header-height));
+  background-color: transparent;
+}
+.phone-div {
+  top: calc(693px - var(--personal-info-header-height));
+}
+.email-p, .phone-p {
+  width: 798px;
+  height: 21px;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  color: #000000;
+}
+.email-input, .phone-input {
+  box-sizing: border-box;
+  width: 788px;
+  height: 48px;
+  background: #FFFFFF;
+  border: 1px solid #BCBCBC;
+  border-radius: 4px;
+  padding-left: 10px;
+  outline: none;
+
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+}
+.email-validation-text, .phone-validation-text {
+  width: 798px;
+  height: 21px;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  color: #2E2E2E;
+}
+.next-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 60px;
+  gap: 20px;
+  position: absolute;
+  width: 151px;
+  height: 48px;
+  right: 150px;
+  top: calc(967px - var(--personal-info-header-height));
+  background: #6B40E3;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+.next-btn-p {
+  width: 81px;
+  height: 20px;
+  text-align: center;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.08em;
+  background-color: transparent;
+  color: #FFFFFF;
+}
+.error-input {
+  border: 1px solid #EF5050;
+}
+.error-text {
+  color: #E52F2F;
+}
