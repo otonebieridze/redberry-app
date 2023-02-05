@@ -14,6 +14,7 @@ export default function PersonalInfo({
   setPhone,
   setImageSrc,
   setCurrentPage,
+  setCurrentResumeStage,
 }) {
   const handleImageChange = (e) => {
     let reader = new FileReader();
@@ -22,10 +23,10 @@ export default function PersonalInfo({
       setImageSrc(reader.result);
     };
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("next page!");
+    setCurrentResumeStage(2)
   };
 
   return (
