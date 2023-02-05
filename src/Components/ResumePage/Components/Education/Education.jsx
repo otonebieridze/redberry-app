@@ -1,15 +1,20 @@
 import styles from "./Education.module.css";
 import Vector from "../../../../assets/images/Vector.png";
 
-export default function Education({ setCurrentPage, setCurrentResumeStage }) {
+export default function Education({
+  formData,
+  setFormData,
+  setCurrentPage,
+  setCurrentResumeStage,
+}) {
   const handleBackBtnClick = (e) => {
-    e.preventDefault()
-    setCurrentResumeStage(2)
-  }
+    e.preventDefault();
+    setCurrentResumeStage(2);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("completed!")
+    alert("completed!");
   };
 
   return (
@@ -33,10 +38,12 @@ export default function Education({ setCurrentPage, setCurrentResumeStage }) {
             placeholder="სასწავლებელი"
             className={styles["college-input"]}
             type="text"
+            value={formData.college}
+            onChange={(e) =>
+              setFormData({ ...formData, college: e.target.value })
+            }
           />
-          <p className={styles["college-validation-text"]}>
-            მინიმუმ 2 სიმბოლო
-          </p>
+          <p className={styles["college-validation-text"]}>მინიმუმ 2 სიმბოლო</p>
         </div>
 
         <div className={styles["grade-div"]}>
@@ -48,7 +55,14 @@ export default function Education({ setCurrentPage, setCurrentResumeStage }) {
 
         <div className={styles["end-date-div"]}>
           <p className={styles["end-date-p"]}>დამთავრების რიცხვი</p>
-          <input className={styles["end-date-input"]} type="date" />
+          <input
+            className={styles["end-date-input"]}
+            type="date"
+            value={formData.collegeEndDate}
+            onChange={(e) =>
+              setFormData({ ...formData, collegeEndDate: e.target.value })
+            }
+          />
         </div>
 
         <div className={styles["description-div"]}>
@@ -56,6 +70,10 @@ export default function Education({ setCurrentPage, setCurrentResumeStage }) {
           <textarea
             placeholder="განათლების აღწერა"
             className={styles["description-textarea"]}
+            value={formData.educationDescription}
+            onChange={(e) =>
+              setFormData({ ...formData, educationDescription: e.target.value })
+            }
           ></textarea>
         </div>
 
@@ -68,9 +86,13 @@ export default function Education({ setCurrentPage, setCurrentResumeStage }) {
           სხვა სასწავლებლის დამატება
         </button>
 
-        <button className={styles["back-btn"]} onClick={handleBackBtnClick}>ᲣᲙᲐᲜ</button>
-        <button className={styles["complete-btn"]} type="submit">ᲓᲐᲡᲠᲣᲚᲔᲑᲐ</button>
+        <button className={styles["back-btn"]} onClick={handleBackBtnClick}>
+          ᲣᲙᲐᲜ
+        </button>
+        <button className={styles["complete-btn"]} type="submit">
+          ᲓᲐᲡᲠᲣᲚᲔᲑᲐ
+        </button>
       </form>
     </div>
-  )
+  );
 }

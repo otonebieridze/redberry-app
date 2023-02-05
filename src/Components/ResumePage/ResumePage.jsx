@@ -7,29 +7,31 @@ import Resume from "./Components/Resume/Resume";
 
 export default function ResumePage({ setCurrentPage }) {
   const [currentResumeStage, setCurrentResumeStage] = useState(1);
+  const [formData, setFormData] = useState({
+    name: "",
+    surname: "",
+    aboutYou: "",
+    email: "",
+    phone: "",
+    imageSrc: "",
+    position: "",
+    employer: "",
+    positionStartDate: "",
+    positionEndDate: "",
+    positionDescription: "",
 
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [aboutYou, setAboutYou] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [imageSrc, setImageSrc] = useState("");
+    college: "",
+    grade: "",
+    collegeEndDate: "",
+    educationDescription: "",
+  })
 
   return (
     <div className={styles.container}>
       {currentResumeStage === 1 ? (
         <PersonalInfo
-          name={name}
-          setName={setName}
-          surname={surname}
-          setSurname={setSurname}
-          aboutYou={aboutYou}
-          setAboutYou={setAboutYou}
-          email={email}
-          setEmail={setEmail}
-          phone={phone}
-          setPhone={setPhone}
-          setImageSrc={setImageSrc}
+          formData={formData}
+          setFormData={setFormData}
           setCurrentPage={setCurrentPage}
           setCurrentResumeStage={setCurrentResumeStage}
         />
@@ -37,6 +39,8 @@ export default function ResumePage({ setCurrentPage }) {
 
       {currentResumeStage === 2 ? (
         <Experience
+          formData={formData}
+          setFormData={setFormData}
           setCurrentPage={setCurrentPage}
           setCurrentResumeStage={setCurrentResumeStage}
         />
@@ -44,19 +48,14 @@ export default function ResumePage({ setCurrentPage }) {
 
       {currentResumeStage === 3 ? (
         <Education
+          formData={formData}
+          setFormData={setFormData}
           setCurrentPage={setCurrentPage}
           setCurrentResumeStage={setCurrentResumeStage}
         />
       ) : null}
 
-      <Resume
-        name={name}
-        surname={surname}
-        aboutYou={aboutYou}
-        email={email}
-        phone={phone}
-        imageSrc={imageSrc}
-      />
+      <Resume {...formData} currentResumeStage={currentResumeStage} />
     </div>
   );
 }

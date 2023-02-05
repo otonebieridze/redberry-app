@@ -1,16 +1,28 @@
 import styles from "./Experience.module.css";
 import Vector from "../../../../assets/images/Vector.png";
 
-export default function Experience({ setCurrentPage, setCurrentResumeStage }) {
+export default function Experience({
+  formData,
+  setFormData,
+  setCurrentPage,
+  setCurrentResumeStage,
+}) {
+  const handleAddExperienceClick = (e) => {
+    e.preventDefault();
+    alert("meti");
+  };
+
   const handleBackBtnClick = (e) => {
-    e.preventDefault()
-    setCurrentResumeStage(1)
-  }
+    e.preventDefault();
+    setCurrentResumeStage(1);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setCurrentResumeStage(3)
+    setCurrentResumeStage(3);
   };
+
+  let array = ["first", "second", "third"];
 
   return (
     <div className={styles["experience-page"]}>
@@ -33,6 +45,10 @@ export default function Experience({ setCurrentPage, setCurrentResumeStage }) {
             placeholder="დეველოპერი, დიზაინერი, ა.შ."
             className={styles["position-input"]}
             type="text"
+            value={formData.position}
+            onChange={(e) =>
+              setFormData({ ...formData, position: e.target.value })
+            }
           />
           <p className={styles["position-validation-text"]}>
             მინიმუმ 2 სიმბოლო
@@ -45,6 +61,10 @@ export default function Experience({ setCurrentPage, setCurrentResumeStage }) {
             placeholder="დამსაქმებელი"
             className={styles["employer-input"]}
             type="text"
+            value={formData.employer}
+            onChange={(e) =>
+              setFormData({ ...formData, employer: e.target.value })
+            }
           />
           <p className={styles["employer-validation-text"]}>
             მინიმუმ 2 სიმბოლო
@@ -53,12 +73,26 @@ export default function Experience({ setCurrentPage, setCurrentResumeStage }) {
 
         <div className={styles["start-date-div"]}>
           <p className={styles["start-date-p"]}>დაწყების რიცხვი</p>
-          <input className={styles["start-date-input"]} type="date" />
+          <input
+            className={styles["start-date-input"]}
+            type="date"
+            value={formData.positionStartDate}
+            onChange={(e) =>
+              setFormData({ ...formData, positionStartDate: e.target.value })
+            }
+          />
         </div>
 
         <div className={styles["end-date-div"]}>
           <p className={styles["end-date-p"]}>დამთავრების რიცხვი</p>
-          <input className={styles["end-date-input"]} type="date" />
+          <input
+            className={styles["end-date-input"]}
+            type="date"
+            value={formData.positionEndDate}
+            onChange={(e) =>
+              setFormData({ ...formData, positionEndDate: e.target.value })
+            }
+          />
         </div>
 
         <div className={styles["description-div"]}>
@@ -66,6 +100,10 @@ export default function Experience({ setCurrentPage, setCurrentResumeStage }) {
           <textarea
             placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
             className={styles["description-textarea"]}
+            value={formData.positionDescription}
+            onChange={(e) =>
+              setFormData({ ...formData, positionDescription: e.target.value })
+            }
           ></textarea>
         </div>
 
@@ -73,13 +111,17 @@ export default function Experience({ setCurrentPage, setCurrentResumeStage }) {
 
         <button
           className={styles["add-experience-btn"]}
-          onClick={(e) => e.preventDefault()}
+          onClick={handleAddExperienceClick}
         >
           მეტი გამოცდილების დამატება
         </button>
 
-        <button className={styles["back-btn"]} onClick={handleBackBtnClick}>ᲣᲙᲐᲜ</button>
-        <button className={styles["next-btn"]} type="submit">ᲨᲔᲛᲓᲔᲒᲘ</button>
+        <button className={styles["back-btn"]} onClick={handleBackBtnClick}>
+          ᲣᲙᲐᲜ
+        </button>
+        <button className={styles["next-btn"]} type="submit">
+          ᲨᲔᲛᲓᲔᲒᲘ
+        </button>
       </form>
     </div>
   );

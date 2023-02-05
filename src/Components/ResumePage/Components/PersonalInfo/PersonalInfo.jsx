@@ -2,17 +2,8 @@ import styles from "./PersonalInfo.module.css";
 import Vector from "../../../../assets/images/Vector.png";
 
 export default function PersonalInfo({
-  name,
-  setName,
-  surname,
-  setSurname,
-  aboutYou,
-  setAboutYou,
-  email,
-  setEmail,
-  phone,
-  setPhone,
-  setImageSrc,
+  formData,
+  setFormData,
   setCurrentPage,
   setCurrentResumeStage,
 }) {
@@ -20,7 +11,7 @@ export default function PersonalInfo({
     let reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = () => {
-      setImageSrc(reader.result);
+      setFormData({...formData, imageSrc: reader.result});
     };
   };
   
@@ -45,8 +36,8 @@ export default function PersonalInfo({
             placeholder="ანზორ"
             className={styles["name-input"]}
             type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={formData.name}
+            onChange={(e) => setFormData({...formData, name: e.target.value})}
           />
           <p className={styles["name-validation-text"]}>
             მინიმუმ 2 ასო, ქართული ასოები
@@ -58,8 +49,8 @@ export default function PersonalInfo({
             placeholder="მუმლაძე"
             className={styles["surname-input"]}
             type="text"
-            value={surname}
-            onChange={(e) => setSurname(e.target.value)}
+            value={formData.surname}
+            onChange={(e) => setFormData({...formData, surname: e.target.value})}
           />
           <p className={styles["surname-validation-text"]}>
             მინიმუმ 2 ასო, ქართული ასოები
@@ -83,8 +74,8 @@ export default function PersonalInfo({
           <textarea
             placeholder="ზოგადი ინფო შენ შესახებ"
             className={styles["about-you-textarea"]}
-            value={aboutYou}
-            onChange={(e) => setAboutYou(e.target.value)}
+            value={formData.aboutYou}
+            onChange={(e) => setFormData({...formData, aboutYou: e.target.value})}
           ></textarea>
         </div>
 
@@ -94,8 +85,8 @@ export default function PersonalInfo({
             placeholder="anzorr666@redberry.ge"
             className={styles["email-input"]}
             type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formData.email}
+            onChange={(e) => setFormData({...formData, email: e.target.value})}
           />
           <p className={styles["email-validation-text"]}>
             უნდა მთავრდებოდეს @redberry.ge-ით
@@ -108,8 +99,8 @@ export default function PersonalInfo({
             placeholder="+995 551 12 34 56"
             className={styles["phone-input"]}
             type="text"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            value={formData.phone}
+            onChange={(e) => setFormData({...formData, phone: e.target.value})}
           />
           <p className={styles["phone-validation-text"]}>
             უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს
