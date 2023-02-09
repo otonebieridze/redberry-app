@@ -184,8 +184,8 @@ export default function Education({
     }
 
     if (errorInputs.length === 0 && errorsArray.length === 0 && isChanged) {
-      alert("completed!");
-      // localStorage.setItem("currentResumeStage", 3)
+      setCurrentPage(3)
+      localStorage.setItem("currentPage", 3)
     }
   };
 

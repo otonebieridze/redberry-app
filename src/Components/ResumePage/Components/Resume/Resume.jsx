@@ -20,8 +20,6 @@ export default function Resume({
   grade,
   collegeEndDate,
   educationDescription,
-
-  currentResumeStage,
 }) {
   return (
     <div className={styles["resume"]}>
