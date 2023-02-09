@@ -82,6 +82,17 @@
   background-color: transparent;
   color: #000000;
 }
+.input-div, .input-div-2 {
+  width: 395px;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.input-div-2 {
+  width: 818px;
+}
 .college-input {
   box-sizing: border-box;
   width: 788px;
@@ -145,9 +156,27 @@
   width: 361px;
   height: 48px;
   background: #FFFFFF;
+  color: #00000099;
   border: 1px solid #BCBCBC;
   border-radius: 4px;
   padding-left: 10px;
+  outline: none;
+}
+.grade-input-option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 10px 10px 16px;
+  gap: 10px;
+  width: 370px;
+  height: 41px;
+  background: #FFFFFF;
+  color: #1A1A1A;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
 }
 .description-div {
   display: flex;
@@ -253,4 +282,24 @@
 .complete-btn {
   width: 151px;
   left: 797px;
+}
+
+.correct-vector {
+  width: 16.5px;
+  height: 16.5px;
+  background-color: transparent;
+  color: #98E37E;
+  position: absolute;
+  right: 40px;
+}
+.error-vector {
+  width: 21px;
+  height: 18.75px;
+  background-color: transparent;
+}
+.error-input {
+  border: 1px solid #EF5050;
+}
+.error-text {
+  color: #E52F2F;
 }

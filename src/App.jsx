@@ -4,7 +4,7 @@ import HomePage from "./Components/HomePage/HomePage";
 import ResumePage from "./Components/ResumePage/ResumePage";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(JSON.parse(localStorage.getItem("currentPage")) || 1)
 
   return (
     <>

@@ -1,5 +1,8 @@
 import styles from "./Education.module.css";
 import Vector from "../../../../assets/images/Vector.png";
+import ErrorVector from "../../../../assets/images/Error-Vector.png";
+import CorrectVector from "../../../../assets/images/Correct-Vector.png";
+import { useState } from "react";
 
 export default function Education({
   formData,
@@ -7,14 +10,183 @@ export default function Education({
   setCurrentPage,
   setCurrentResumeStage,
 }) {
+  const [errorInputs, setErrorInputs] = useState(
+    JSON.parse(localStorage.getItem("errorInputsEducation")) || []
+  );
+  const [errorsArray, setErrorsArray] = useState(
+    JSON.parse(localStorage.getItem("errorsArrayEducation")) || [
+      "college",
+      "grade",
+      "collegeEndDate",
+      "educationDescription",
+    ]
+  );
+  const [isChanged, setIsChanged] = useState(
+    JSON.parse(localStorage.getItem("isChangedEducation")) || false
+  );
+
+  const handleInputChange = (e, inputName) => {
+    if (inputName === "college") {
+      setFormData({ ...formData, college: e.target.value });
+      if (e.target.value.length >= 2) {
+        setErrorInputs((prev) => prev.filter((item) => item !== "college"));
+        setErrorsArray((prev) => prev.filter((item) => item !== "college"));
+        localStorage.setItem(
+          "formData",
+          JSON.stringify({ ...formData, college: e.target.value })
+        );
+        localStorage.setItem(
+          "errorInputsEducation",
+          JSON.stringify(errorInputs.filter((item) => item !== "college"))
+        );
+        localStorage.setItem(
+          "errorsArrayEducation",
+          JSON.stringify(errorInputs.filter((item) => item !== "college"))
+        );
+      } else {
+        setErrorInputs((prev) => [...prev, "college"]);
+        setErrorsArray((prev) => [...prev, "college"]);
+        localStorage.setItem(
+          "formData",
+          JSON.stringify({ ...formData, college: e.target.value })
+        );
+        localStorage.setItem(
+          "errorInputsEducation",
+          JSON.stringify([...errorInputs, "college"])
+        );
+        localStorage.setItem(
+          "errorsArrayEducation",
+          JSON.stringify([...errorInputs, "college"])
+        );
+      }
+    } else if (inputName === "educationDescription") {
+      setFormData({ ...formData, educationDescription: e.target.value });
+      if (e.target.value.length !== 0) {
+        setErrorInputs((prev) =>
+          prev.filter((item) => item !== "educationDescription")
+        );
+        setErrorsArray((prev) =>
+          prev.filter((item) => item !== "educationDescription")
+        );
+        localStorage.setItem(
+          "formData",
+          JSON.stringify({ ...formData, educationDescription: e.target.value })
+        );
+        localStorage.setItem(
+          "errorInputsEducation",
+          JSON.stringify(
+            errorInputs.filter((item) => item !== "educationDescription")
+          )
+        );
+        localStorage.setItem(
+          "errorsArrayEducation",
+          JSON.stringify(
+            errorInputs.filter((item) => item !== "educationDescription")
+          )
+        );
+      } else {
+        setErrorInputs((prev) => [...prev, "educationDescription"]);
+        setErrorsArray((prev) => [...prev, "educationDescription"]);
+        localStorage.setItem(
+          "formData",
+          JSON.stringify({ ...formData, educationDescription: e.target.value })
+        );
+        localStorage.setItem(
+          "errorInputsEducation",
+          JSON.stringify([...errorInputs, "educationDescription"])
+        );
+        localStorage.setItem(
+          "errorsArrayEducation",
+          JSON.stringify([...errorInputs, "educationDescription"])
+        );
+      }
+    } else if (inputName === "grade") {
+      setFormData({ ...formData, grade: e.target.value });
+      setErrorInputs((prev) => prev.filter((item) => item !== "grade"));
+      setErrorsArray((prev) => prev.filter((item) => item !== "grade"));
+      localStorage.setItem(
+        "formData",
+        JSON.stringify({ ...formData, grade: e.target.value })
+      );
+      localStorage.setItem(
+        "errorInputsEducation",
+        JSON.stringify(errorInputs.filter((item) => item !== "grade"))
+      );
+      localStorage.setItem(
+        "errorsArrayEducation",
+        JSON.stringify(errorInputs.filter((item) => item !== "grade"))
+      );
+    } else if (inputName === "collegeEndDate") {
+      setFormData({ ...formData, collegeEndDate: e.target.value });
+      if (e.target.value.length === 10) {
+        setErrorInputs((prev) =>
+          prev.filter((item) => item !== "collegeEndDate")
+        );
+        setErrorsArray((prev) =>
+          prev.filter((item) => item !== "collegeEndDate")
+        );
+        localStorage.setItem(
+          "formData",
+          JSON.stringify({ ...formData, collegeEndDate: e.target.value })
+        );
+        localStorage.setItem(
+          "errorInputsEducation",
+          JSON.stringify(
+            errorInputs.filter((item) => item !== "collegeEndDate")
+          )
+        );
+        localStorage.setItem(
+          "errorsArrayEducation",
+          JSON.stringify(
+            errorInputs.filter((item) => item !== "collegeEndDate")
+          )
+        );
+      } else {
+        setErrorInputs((prev) => [...prev, "collegeEndDate"]);
+        setErrorsArray((prev) => [...prev, "collegeEndDate"]);
+        localStorage.setItem(
+          "formData",
+          JSON.stringify({ ...formData, collegeEndDate: e.target.value })
+        );
+        localStorage.setItem(
+          "errorInputsEducation",
+          JSON.stringify([...errorInputs, "collegeEndDate"])
+        );
+        localStorage.setItem(
+          "errorsArrayEducation",
+          JSON.stringify([...errorInputs, "collegeEndDate"])
+        );
+      }
+    }
+    setIsChanged(true);
+    localStorage.setItem("isChangedEducation", true);
+  };
+
   const handleBackBtnClick = (e) => {
     e.preventDefault();
     setCurrentResumeStage(2);
+    localStorage.setItem("currentResumeStage", 2);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("completed!");
+    if (formData.college.length < 2) {
+      setErrorInputs((prev) => [...prev, "college"]);
+    }
+    if (formData.educationDescription === "") {
+      setErrorInputs((prev) => [...prev, "educationDescription"]);
+    }
+    if (formData.grade === "") {
+      setErrorInputs((prev) => [...prev, "grade"]);
+    }
+    if (formData.collegeEndDate.length !== 10) {
+      setErrorInputs((prev) => [...prev, "collegeEndDate"]);
+    }
+
+    if (errorInputs.length === 0 && errorsArray.length === 0 && isChanged) {
+      alert("completed!");
+      // localStorage.setItem("currentResumeStage", 3)
+    }
   };
 
   return (
@@ -23,7 +195,10 @@ export default function Education({
         className={styles.vector}
         src={Vector}
         alt="vector"
-        onClick={() => setCurrentPage(1)}
+        onClick={() => {
+          setCurrentPage(1);
+          localStorage.clear();
+        }}
       />
 
       <header className={styles["education-page-header"]}>
@@ -33,48 +208,205 @@ export default function Education({
 
       <form onSubmit={handleSubmit}>
         <div className={styles["college-div"]}>
-          <p className={styles["college-p"]}>სასწავლებელი</p>
-          <input
-            placeholder="სასწავლებელი"
-            className={styles["college-input"]}
-            type="text"
-            value={formData.college}
-            onChange={(e) =>
-              setFormData({ ...formData, college: e.target.value })
+          <p
+            className={
+              errorInputs.includes("college")
+                ? `${styles["college-p"]} ${styles["error-text"]}`
+                : styles["college-p"]
             }
-          />
+          >
+            სასწავლებელი
+          </p>
+          <div className={styles["input-div-2"]}>
+            <input
+              placeholder="სასწავლებელი"
+              className={
+                errorInputs.includes("college")
+                  ? `${styles["college-input"]} ${styles["error-input"]}`
+                  : styles["college-input"]
+              }
+              style={
+                !errorInputs.includes("college") && formData.college !== ""
+                  ? { border: "1px solid #98E37E" }
+                  : {}
+              }
+              type="text"
+              value={formData.college}
+              onChange={(e) => handleInputChange(e, "college")}
+            />
+            {!errorInputs.includes("college") && formData.college !== "" && (
+              <img
+                className={styles["correct-vector"]}
+                src={CorrectVector}
+                alt="correct-vector"
+              />
+            )}
+            {errorInputs.includes("college") && (
+              <img
+                className={styles["error-vector"]}
+                src={ErrorVector}
+                alt="error-vector"
+              />
+            )}
+          </div>
           <p className={styles["college-validation-text"]}>მინიმუმ 2 სიმბოლო</p>
         </div>
 
         <div className={styles["grade-div"]}>
-          <p className={styles["grade-p"]}>ხარისხი</p>
-          <select className={styles["grade-input"]}>
-            <option>აირჩიეთ ხარისხი</option>
-          </select>
+          <p
+            className={
+              errorInputs.includes("grade")
+                ? `${styles["grade-p"]} ${styles["error-text"]}`
+                : styles["grade-p"]
+            }
+          >
+            ხარისხი
+          </p>
+          <div className={styles["input-div"]}>
+            <select
+              value={formData.grade || "აირჩიეთ ხარისხი"}
+              className={
+                errorInputs.includes("grade")
+                  ? `${styles["grade-input"]} ${styles["error-input"]}`
+                  : styles["grade-input"]
+              }
+              style={
+                !errorInputs.includes("grade") && formData.grade !== ""
+                  ? { border: "1px solid #98E37E" }
+                  : {}
+              }
+              onChange={(e) => handleInputChange(e, "grade")}
+            >
+              <option disabled hidden>
+                აირჩიეთ ხარისხი
+              </option>
+              <option className={styles["grade-input-option"]}>
+                საშუალო სკოლის დიპლომი
+              </option>
+              <option className={styles["grade-input-option"]}>
+                ზოგადსაგანმანათლებლო დიპლომი
+              </option>
+              <option className={styles["grade-input-option"]}>
+                ბაკალავრი
+              </option>
+              <option className={styles["grade-input-option"]}>მაგისტრი</option>
+              <option className={styles["grade-input-option"]}>დოქტორი</option>
+              <option className={styles["grade-input-option"]}>
+                ასოცირებული ხარისხი
+              </option>
+              <option className={styles["grade-input-option"]}>სტუდენტი</option>
+              <option className={styles["grade-input-option"]}>
+                კოლეჯი (ხარისხის გარეშე)
+              </option>
+              <option className={styles["grade-input-option"]}>სხვა</option>
+            </select>
+            {!errorInputs.includes("grade") && formData.grade !== "" && (
+              <img
+                className={styles["correct-vector"]}
+                style={{ right: "0px" }}
+                src={CorrectVector}
+                alt="correct-vector"
+              />
+            )}
+            {errorInputs.includes("grade") && (
+              <img
+                className={styles["error-vector"]}
+                src={ErrorVector}
+                alt="error-vector"
+              />
+            )}
+          </div>
         </div>
 
         <div className={styles["end-date-div"]}>
-          <p className={styles["end-date-p"]}>დამთავრების რიცხვი</p>
-          <input
-            className={styles["end-date-input"]}
-            type="date"
-            value={formData.collegeEndDate}
-            onChange={(e) =>
-              setFormData({ ...formData, collegeEndDate: e.target.value })
+          <p
+            className={
+              errorInputs.includes("collegeEndDate")
+                ? `${styles["end-date-p"]} ${styles["error-text"]}`
+                : styles["end-date-p"]
             }
-          />
+          >
+            დამთავრების რიცხვი
+          </p>
+          <div className={styles["input-div"]}>
+            <input
+              className={
+                errorInputs.includes("collegeEndDate")
+                  ? `${styles["end-date-input"]} ${styles["error-input"]}`
+                  : styles["end-date-input"]
+              }
+              style={
+                !errorInputs.includes("collegeEndDate") &&
+                formData.collegeEndDate !== ""
+                  ? { border: "1px solid #98E37E" }
+                  : {}
+              }
+              type="date"
+              value={formData.collegeEndDate}
+              onChange={(e) => handleInputChange(e, "collegeEndDate")}
+            />
+            {!errorInputs.includes("collegeEndDate") &&
+              formData.collegeEndDate !== "" && (
+                <img
+                  className={styles["correct-vector"]}
+                  style={{ right: "0px" }}
+                  src={CorrectVector}
+                  alt="correct-vector"
+                />
+              )}
+            {errorInputs.includes("collegeEndDate") && (
+              <img
+                className={styles["error-vector"]}
+                src={ErrorVector}
+                alt="error-vector"
+              />
+            )}
+          </div>
         </div>
 
         <div className={styles["description-div"]}>
-          <p className={styles["description-p"]}>აღწერა</p>
-          <textarea
-            placeholder="განათლების აღწერა"
-            className={styles["description-textarea"]}
-            value={formData.educationDescription}
-            onChange={(e) =>
-              setFormData({ ...formData, educationDescription: e.target.value })
+          <p
+            className={
+              errorInputs.includes("educationDescription")
+                ? `${styles["description-p"]} ${styles["error-text"]}`
+                : styles["description-p"]
             }
-          ></textarea>
+          >
+            აღწერა
+          </p>
+          <div className={styles["input-div-2"]}>
+            <textarea
+              placeholder="განათლების აღწერა"
+              className={
+                errorInputs.includes("educationDescription")
+                  ? `${styles["description-textarea"]} ${styles["error-input"]}`
+                  : styles["description-textarea"]
+              }
+              style={
+                !errorInputs.includes("educationDescription") &&
+                formData.educationDescription !== ""
+                  ? { border: "1px solid #98E37E" }
+                  : {}
+              }
+              value={formData.educationDescription}
+              onChange={(e) => handleInputChange(e, "educationDescription")}
+            ></textarea>
+            {!errorInputs.includes("educationDescription") &&
+              formData.educationDescription !== "" && (
+                <img
+                  className={styles["correct-vector"]}
+                  src={CorrectVector}
+                  alt="correct-vector"
+                />
+              )}
+            {errorInputs.includes("educationDescription") && (
+              <img
+                className={styles["error-vector"]}
+                src={ErrorVector}
+                alt="error-vector"
+              />
+            )}
+          </div>
         </div>
 
         <div className={styles.line}></div>

@@ -56,6 +56,17 @@
 .form {
   position: relative;
 }
+.input-div, .input-div-2 {
+  width: 395px;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.input-div-2 {
+  width: 818px;
+}
 .position-div, .employer-div {
   display: flex;
   flex-direction: column;
@@ -151,6 +162,7 @@
   border: 1px solid #BCBCBC;
   border-radius: 4px;
   padding-left: 10px;
+  outline: none;
 }
 .description-div {
   display: flex;
@@ -256,4 +268,24 @@
 .next-btn {
   width: 151px;
   left: 797px;
+}
+
+.correct-vector {
+  width: 16.5px;
+  height: 16.5px;
+  background-color: transparent;
+  color: #98E37E;
+  position: absolute;
+  right: 40px;
+}
+.error-vector {
+  width: 21px;
+  height: 18.75px;
+  background-color: transparent;
+}
+.error-input {
+  border: 1px solid #EF5050;
+}
+.error-text {
+  color: #E52F2F;
 }
