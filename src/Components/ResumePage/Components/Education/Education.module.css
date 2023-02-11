@@ -1,6 +1,6 @@
 .education-page {
   width: 1098px;
-  height: 100%;
+  height: 1080px;
   background-color: #eaeaea;
 }
 
@@ -163,20 +163,12 @@
   outline: none;
 }
 .grade-input-option {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 10px 10px 10px 16px;
-  gap: 10px;
-  width: 370px;
-  height: 41px;
   background: #FFFFFF;
   color: #1A1A1A;
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 21px;
 }
 .description-div {
   display: flex;

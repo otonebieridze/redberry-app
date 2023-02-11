@@ -17,20 +17,26 @@ export default function ResumePage({ setCurrentPage }) {
     email: JSON.parse(localStorage.getItem("formData"))?.email || "",
     phone: JSON.parse(localStorage.getItem("formData"))?.phone || "",
     imageSrc: JSON.parse(localStorage.getItem("formData"))?.imageSrc || "",
-    position: JSON.parse(localStorage.getItem("formData"))?.position || "",
-    employer: JSON.parse(localStorage.getItem("formData"))?.employer || "",
-    positionStartDate:
-      JSON.parse(localStorage.getItem("formData"))?.positionStartDate || "",
-    positionEndDate:
-      JSON.parse(localStorage.getItem("formData"))?.positionEndDate || "",
-    positionDescription:
-      JSON.parse(localStorage.getItem("formData"))?.positionDescription || "",
+
+    experiences: [
+      {
+        position: JSON.parse(localStorage.getItem("formData"))?.experiences[0].position || "",
+        employer: JSON.parse(localStorage.getItem("formData"))?.experiences[0].employer || "",
+        positionStartDate:
+          JSON.parse(localStorage.getItem("formData"))?.experiences[0].positionStartDate || "",
+        positionEndDate:
+          JSON.parse(localStorage.getItem("formData"))?.experiences[0].positionEndDate || "",
+        positionDescription:
+          JSON.parse(localStorage.getItem("formData"))?.experiences[0].positionDescription || "",
+      },
+    ],
+    
     college: JSON.parse(localStorage.getItem("formData"))?.college || "",
     grade: JSON.parse(localStorage.getItem("formData"))?.grade || "",
     collegeEndDate: JSON.parse(localStorage.getItem("formData"))?.collegeEndDate || "",
     educationDescription: JSON.parse(localStorage.getItem("formData"))?.educationDescription || "",
   });
-
+  
   return (
     <div className={styles.container}>
       {currentResumeStage === 1 ? (

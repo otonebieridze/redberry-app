@@ -2,7 +2,8 @@ import styles from "./Education.module.css";
 import Vector from "../../../../assets/images/Vector.png";
 import ErrorVector from "../../../../assets/images/Error-Vector.png";
 import CorrectVector from "../../../../assets/images/Correct-Vector.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Education({
   formData,
@@ -10,6 +11,15 @@ export default function Education({
   setCurrentPage,
   setCurrentResumeStage,
 }) {
+  const [optionsData, setOptionsData] = useState([])
+  useEffect(() => {
+    axios.get("https://resume.redberryinternship.ge/api/degrees").then(res => {
+      setOptionsData(res.data)
+    }).catch(err => {
+      console.log(err)
+    })
+  }, [])
+
   const [errorInputs, setErrorInputs] = useState(
     JSON.parse(localStorage.getItem("errorInputsEducation")) || []
   );
@@ -41,7 +51,7 @@ export default function Education({
         );
         localStorage.setItem(
           "errorsArrayEducation",
-          JSON.stringify(errorInputs.filter((item) => item !== "college"))
+          JSON.stringify(errorsArray.filter((item) => item !== "college"))
         );
       } else {
         setErrorInputs((prev) => [...prev, "college"]);
@@ -56,7 +66,7 @@ export default function Education({
         );
         localStorage.setItem(
           "errorsArrayEducation",
-          JSON.stringify([...errorInputs, "college"])
+          JSON.stringify([...errorsArray, "college"])
         );
       }
     } else if (inputName === "educationDescription") {
@@ -81,7 +91,7 @@ export default function Education({
         localStorage.setItem(
           "errorsArrayEducation",
           JSON.stringify(
-            errorInputs.filter((item) => item !== "educationDescription")
+            errorsArray.filter((item) => item !== "educationDescription")
           )
         );
       } else {
@@ -97,7 +107,7 @@ export default function Education({
         );
         localStorage.setItem(
           "errorsArrayEducation",
-          JSON.stringify([...errorInputs, "educationDescription"])
+          JSON.stringify([...errorsArray, "educationDescription"])
         );
       }
     } else if (inputName === "grade") {
@@ -114,7 +124,7 @@ export default function Education({
       );
       localStorage.setItem(
         "errorsArrayEducation",
-        JSON.stringify(errorInputs.filter((item) => item !== "grade"))
+        JSON.stringify(errorsArray.filter((item) => item !== "grade"))
       );
     } else if (inputName === "collegeEndDate") {
       setFormData({ ...formData, collegeEndDate: e.target.value });
@@ -138,7 +148,7 @@ export default function Education({
         localStorage.setItem(
           "errorsArrayEducation",
           JSON.stringify(
-            errorInputs.filter((item) => item !== "collegeEndDate")
+            errorsArray.filter((item) => item !== "collegeEndDate")
           )
         );
       } else {
@@ -154,7 +164,7 @@ export default function Education({
         );
         localStorage.setItem(
           "errorsArrayEducation",
-          JSON.stringify([...errorInputs, "collegeEndDate"])
+          JSON.stringify([...errorsArray, "collegeEndDate"])
         );
       }
     }
@@ -280,25 +290,11 @@ export default function Education({
               <option disabled hidden>
                 აირჩიეთ ხარისხი
               </option>
-              <option className={styles["grade-input-option"]}>
-                საშუალო სკოლის დიპლომი
-              </option>
-              <option className={styles["grade-input-option"]}>
-                ზოგადსაგანმანათლებლო დიპლომი
-              </option>
-              <option className={styles["grade-input-option"]}>
-                ბაკალავრი
-              </option>
-              <option className={styles["grade-input-option"]}>მაგისტრი</option>
-              <option className={styles["grade-input-option"]}>დოქტორი</option>
-              <option className={styles["grade-input-option"]}>
-                ასოცირებული ხარისხი
-              </option>
-              <option className={styles["grade-input-option"]}>სტუდენტი</option>
-              <option className={styles["grade-input-option"]}>
-                კოლეჯი (ხარისხის გარეშე)
-              </option>
-              <option className={styles["grade-input-option"]}>სხვა</option>
+              {optionsData.map((option) => {
+                return (
+                  <option className={styles["grade-input-option"]} key={option.id}>{option.title}</option>
+                )
+              })}
             </select>
             {!errorInputs.includes("grade") && formData.grade !== "" && (
               <img

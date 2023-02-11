@@ -47,7 +47,7 @@ export default function PersonalInfo({
       );
       localStorage.setItem(
         "errorsArrayPersonalInfo",
-        JSON.stringify(errorInputs.filter((item) => item !== "imageSrc"))
+        JSON.stringify(errorsArray.filter((item) => item !== "imageSrc"))
       );
     };
 
@@ -71,7 +71,7 @@ export default function PersonalInfo({
         );
         localStorage.setItem(
           "errorsArrayPersonalInfo",
-          JSON.stringify(errorInputs.filter((item) => item !== "name"))
+          JSON.stringify(errorsArray.filter((item) => item !== "name"))
         );
       } else {
         setErrorInputs((prev) => [...prev, "name"]);
@@ -86,7 +86,7 @@ export default function PersonalInfo({
         );
         localStorage.setItem(
           "errorsArrayPersonalInfo",
-          JSON.stringify([...errorInputs, "name"])
+          JSON.stringify([...errorsArray, "name"])
         );
       }
     } else if (inputName === "surname") {
@@ -104,7 +104,7 @@ export default function PersonalInfo({
         );
         localStorage.setItem(
           "errorsArrayPersonalInfo",
-          JSON.stringify(errorInputs.filter((item) => item !== "surname"))
+          JSON.stringify(errorsArray.filter((item) => item !== "surname"))
         );
       } else {
         setErrorInputs((prev) => [...prev, "surname"]);
@@ -119,7 +119,7 @@ export default function PersonalInfo({
         );
         localStorage.setItem(
           "errorsArrayPersonalInfo",
-          JSON.stringify([...errorInputs, "surname"])
+          JSON.stringify([...errorsArray, "surname"])
         );
       }
     } else if (inputName === "email") {
@@ -137,7 +137,7 @@ export default function PersonalInfo({
         );
         localStorage.setItem(
           "errorsArrayPersonalInfo",
-          JSON.stringify(errorInputs.filter((item) => item !== "email"))
+          JSON.stringify(errorsArray.filter((item) => item !== "email"))
         );
       } else {
         setErrorInputs((prev) => [...prev, "email"]);
@@ -152,7 +152,7 @@ export default function PersonalInfo({
         );
         localStorage.setItem(
           "errorsArrayPersonalInfo",
-          JSON.stringify([...errorInputs, "email"])
+          JSON.stringify([...errorsArray, "email"])
         );
       }
     } else if (inputName === "phone") {
@@ -171,7 +171,7 @@ export default function PersonalInfo({
         );
         localStorage.setItem(
           "errorsArrayPersonalInfo",
-          JSON.stringify(errorInputs.filter((item) => item !== "phone"))
+          JSON.stringify(errorsArray.filter((item) => item !== "phone"))
         );
       } else {
         setErrorInputs((prev) => [...prev, "phone"]);
@@ -186,7 +186,7 @@ export default function PersonalInfo({
         );
         localStorage.setItem(
           "errorsArrayPersonalInfo",
-          JSON.stringify([...errorInputs, "phone"])
+          JSON.stringify([...errorsArray, "phone"])
         );
       }
     }
