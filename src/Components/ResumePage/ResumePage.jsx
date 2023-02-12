@@ -20,23 +20,42 @@ export default function ResumePage({ setCurrentPage }) {
 
     experiences: [
       {
-        position: JSON.parse(localStorage.getItem("formData"))?.experiences[0].position || "",
-        employer: JSON.parse(localStorage.getItem("formData"))?.experiences[0].employer || "",
+        position:
+          JSON.parse(localStorage.getItem("formData"))?.experiences[0]
+            .position || "",
+        employer:
+          JSON.parse(localStorage.getItem("formData"))?.experiences[0]
+            .employer || "",
         positionStartDate:
-          JSON.parse(localStorage.getItem("formData"))?.experiences[0].positionStartDate || "",
+          JSON.parse(localStorage.getItem("formData"))?.experiences[0]
+            .positionStartDate || "",
         positionEndDate:
-          JSON.parse(localStorage.getItem("formData"))?.experiences[0].positionEndDate || "",
+          JSON.parse(localStorage.getItem("formData"))?.experiences[0]
+            .positionEndDate || "",
         positionDescription:
-          JSON.parse(localStorage.getItem("formData"))?.experiences[0].positionDescription || "",
+          JSON.parse(localStorage.getItem("formData"))?.experiences[0]
+            .positionDescription || "",
       },
     ],
-    
-    college: JSON.parse(localStorage.getItem("formData"))?.college || "",
-    grade: JSON.parse(localStorage.getItem("formData"))?.grade || "",
-    collegeEndDate: JSON.parse(localStorage.getItem("formData"))?.collegeEndDate || "",
-    educationDescription: JSON.parse(localStorage.getItem("formData"))?.educationDescription || "",
+
+    educations: [
+      {
+        college:
+          JSON.parse(localStorage.getItem("formData"))?.educations[0].college ||
+          "",
+        grade:
+          JSON.parse(localStorage.getItem("formData"))?.educations[0].grade ||
+          "",
+        collegeEndDate:
+          JSON.parse(localStorage.getItem("formData"))?.educations[0]
+            .collegeEndDate || "",
+        educationDescription:
+          JSON.parse(localStorage.getItem("formData"))?.educations[0]
+            .educationDescription || "",
+      }
+    ],
   });
-  
+
   return (
     <div className={styles.container}>
       {currentResumeStage === 1 ? (
