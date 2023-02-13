@@ -22,9 +22,9 @@ export default function Experience({
     JSON.parse(localStorage.getItem("errorsArrayExperience")) || [[
       "position",
       "employer",
-      "positionStartDate",
-      "positionEndDate",
-      "positionDescription",
+      "start_date",
+      "due_date",
+      "description",
     ]]
   );
   
@@ -123,17 +123,17 @@ export default function Experience({
           JSON.stringify(errorsArray)
         );
       }
-    } else if (inputName === "positionStartDate") {
+    } else if (inputName === "start_date") {
       const newExperienceArray = formData.experiences;
-      newExperienceArray[index].positionStartDate = e.target.value;
+      newExperienceArray[index].start_date = e.target.value;
       setFormData({ ...formData, experiences: newExperienceArray });
       if (e.target.value.length === 10) {
         const newErrorInputs = errorInputs
-        newErrorInputs[index] = errorInputs[index].filter((item) => item !== "positionStartDate")
+        newErrorInputs[index] = errorInputs[index].filter((item) => item !== "start_date")
         setErrorInputs(newErrorInputs);
 
         const newErrorsArray = errorsArray
-        newErrorsArray[index] = errorsArray[index].filter((item) => item !== "positionStartDate")
+        newErrorsArray[index] = errorsArray[index].filter((item) => item !== "start_date")
         setErrorsArray(newErrorsArray);
 
         localStorage.setItem(
@@ -150,11 +150,11 @@ export default function Experience({
         );
       } else {
         const newErrorInputs = errorInputs
-        newErrorInputs[index].push("positionStartDate")
+        newErrorInputs[index].push("start_date")
         setErrorInputs(newErrorInputs);
 
         const newErrorsArray = errorsArray
-        newErrorsArray[index].push("positionStartDate")
+        newErrorsArray[index].push("start_date")
         setErrorsArray(newErrorsArray);
 
         localStorage.setItem(
@@ -170,17 +170,17 @@ export default function Experience({
           JSON.stringify(errorsArray)
         );
       }
-    } else if (inputName === "positionEndDate") {
+    } else if (inputName === "due_date") {
       const newExperienceArray = formData.experiences;
-      newExperienceArray[index].positionEndDate = e.target.value;
+      newExperienceArray[index].due_date = e.target.value;
       setFormData({ ...formData, experiences: newExperienceArray });
       if (e.target.value.length === 10) {
         const newErrorInputs = errorInputs
-        newErrorInputs[index] = errorInputs[index].filter((item) => item !== "positionEndDate")
+        newErrorInputs[index] = errorInputs[index].filter((item) => item !== "due_date")
         setErrorInputs(newErrorInputs);
 
         const newErrorsArray = errorsArray
-        newErrorsArray[index] = errorsArray[index].filter((item) => item !== "positionEndDate")
+        newErrorsArray[index] = errorsArray[index].filter((item) => item !== "due_date")
         setErrorsArray(newErrorsArray);
 
         localStorage.setItem(
@@ -197,11 +197,11 @@ export default function Experience({
         );
       } else {
         const newErrorInputs = errorInputs
-        newErrorInputs[index].push("positionEndDate")
+        newErrorInputs[index].push("due_date")
         setErrorInputs(newErrorInputs);
 
         const newErrorsArray = errorsArray
-        newErrorsArray[index].push("positionEndDate")
+        newErrorsArray[index].push("due_date")
         setErrorsArray(newErrorsArray);
 
         localStorage.setItem(
@@ -217,17 +217,17 @@ export default function Experience({
           JSON.stringify(errorsArray)
         );
       }
-    } else if (inputName === "positionDescription") {
+    } else if (inputName === "description") {
       const newExperienceArray = formData.experiences;
-      newExperienceArray[index].positionDescription = e.target.value;
+      newExperienceArray[index].description = e.target.value;
       setFormData({ ...formData, experiences: newExperienceArray });
       if (e.target.value.length !== 0) {
         const newErrorInputs = errorInputs
-        newErrorInputs[index] = errorInputs[index].filter((item) => item !== "positionDescription")
+        newErrorInputs[index] = errorInputs[index].filter((item) => item !== "description")
         setErrorInputs(newErrorInputs);
 
         const newErrorsArray = errorsArray
-        newErrorsArray[index] = errorsArray[index].filter((item) => item !== "positionDescription")
+        newErrorsArray[index] = errorsArray[index].filter((item) => item !== "description")
         setErrorsArray(newErrorsArray);
 
         localStorage.setItem(
@@ -244,11 +244,11 @@ export default function Experience({
         );
       } else {
         const newErrorInputs = errorInputs
-        newErrorInputs[index].push("positionDescription")
+        newErrorInputs[index].push("description")
         setErrorInputs(newErrorInputs);
 
         const newErrorsArray = errorsArray
-        newErrorsArray[index].push("positionDescription")
+        newErrorsArray[index].push("description")
         setErrorsArray(newErrorsArray);
 
         localStorage.setItem(
@@ -289,12 +289,12 @@ export default function Experience({
         {
           position: JSON.parse(localStorage.getItem("formData"))?.position || "",
           employer: JSON.parse(localStorage.getItem("formData"))?.employer || "",
-          positionStartDate:
-            JSON.parse(localStorage.getItem("formData"))?.positionStartDate || "",
-          positionEndDate:
-            JSON.parse(localStorage.getItem("formData"))?.positionEndDate || "",
-          positionDescription:
-            JSON.parse(localStorage.getItem("formData"))?.positionDescription || "",
+          start_date:
+            JSON.parse(localStorage.getItem("formData"))?.start_date || "",
+            due_date:
+            JSON.parse(localStorage.getItem("formData"))?.due_date || "",
+            description:
+            JSON.parse(localStorage.getItem("formData"))?.description || "",
         }
       )
       const newErrorInps = errorInputs
@@ -306,9 +306,9 @@ export default function Experience({
       newErrorsArr.push([
         "position",
         "employer",
-        "positionStartDate",
-        "positionEndDate",
-        "positionDescription",
+        "start_date",
+        "due_date",
+        "description",
       ])
       setErrorsArray(newErrorsArr)
       localStorage.setItem("errorsArrayExperience", JSON.stringify(errorsArray))
@@ -337,9 +337,9 @@ export default function Experience({
         setSubmitClickFlag(!submitClickFlag)
       })
       formData.experiences.map((obj, index) => {
-        if (obj.positionStartDate.length !== 10) {
+        if (obj.start_date.length !== 10) {
           const addedErrorInputs = errorInputs
-          addedErrorInputs[index].push("positionStartDate")
+          addedErrorInputs[index].push("start_date")
           setErrorInputs(addedErrorInputs);
           localStorage.setItem("errorInputsExperience", JSON.stringify(errorInputs));
         }
@@ -347,9 +347,9 @@ export default function Experience({
         setSubmitClickFlag(!submitClickFlag)
       })
       formData.experiences.map((obj, index) => {
-        if (obj.positionEndDate.length !== 10) {
+        if (obj.due_date.length !== 10) {
           const addedErrorInputs = errorInputs
-          addedErrorInputs[index].push("positionEndDate")
+          addedErrorInputs[index].push("due_date")
           setErrorInputs(addedErrorInputs);
           localStorage.setItem("errorInputsExperience", JSON.stringify(errorInputs));
         }
@@ -357,9 +357,9 @@ export default function Experience({
         setSubmitClickFlag(!submitClickFlag)
       })
       formData.experiences.map((obj, index) => {
-        if (obj.positionDescription.length === 0) {
+        if (obj.description.length === 0) {
           const addedErrorInputs = errorInputs
-          addedErrorInputs[index].push("positionDescription")
+          addedErrorInputs[index].push("description")
           setErrorInputs(addedErrorInputs);
           localStorage.setItem("errorInputsExperience", JSON.stringify(errorInputs));
         }
@@ -398,9 +398,9 @@ export default function Experience({
       setSubmitClickFlag(!submitClickFlag)
     })
     formData.experiences.map((obj, index) => {
-      if (obj.positionStartDate.length !== 10) {
+      if (obj.start_date.length !== 10) {
         const addedErrorInputs = errorInputs
-        addedErrorInputs[index].push("positionStartDate")
+        addedErrorInputs[index].push("start_date")
         setErrorInputs(addedErrorInputs);
         localStorage.setItem("errorInputsExperience", JSON.stringify(errorInputs));
       }
@@ -408,9 +408,9 @@ export default function Experience({
       setSubmitClickFlag(!submitClickFlag)
     })
     formData.experiences.map((obj, index) => {
-      if (obj.positionEndDate.length !== 10) {
+      if (obj.due_date.length !== 10) {
         const addedErrorInputs = errorInputs
-        addedErrorInputs[index].push("positionEndDate")
+        addedErrorInputs[index].push("due_date")
         setErrorInputs(addedErrorInputs);
         localStorage.setItem("errorInputsExperience", JSON.stringify(errorInputs));
       }
@@ -418,9 +418,9 @@ export default function Experience({
       setSubmitClickFlag(!submitClickFlag)
     })
     formData.experiences.map((obj, index) => {
-      if (obj.positionDescription.length === 0) {
+      if (obj.description.length === 0) {
         const addedErrorInputs = errorInputs
-        addedErrorInputs[index].push("positionDescription")
+        addedErrorInputs[index].push("description")
         setErrorInputs(addedErrorInputs);
         localStorage.setItem("errorInputsExperience", JSON.stringify(errorInputs));
       }
@@ -554,7 +554,7 @@ export default function Experience({
                 <div className={styles["start-date-div"]}>
                   <p
                     className={
-                      errorInputs[index].includes("positionStartDate")
+                      errorInputs[index].includes("start_date")
                         ? `${styles["start-date-p"]} ${styles["error-text"]}`
                         : styles["start-date-p"]
                     }
@@ -564,22 +564,22 @@ export default function Experience({
                   <div className={styles["input-div"]}>
                     <input
                       className={
-                        errorInputs[index].includes("positionStartDate")
+                        errorInputs[index].includes("start_date")
                           ? `${styles["start-date-input"]} ${styles["error-input"]}`
                           : styles["start-date-input"]
                       }
                       style={
-                        !errorInputs[index].includes("positionStartDate") &&
-                        formData.experiences[index]?.positionStartDate !== ""
+                        !errorInputs[index].includes("start_date") &&
+                        formData.experiences[index]?.start_date !== ""
                           ? { border: "1px solid #98E37E" }
                           : {}
                       }
                       type="date"
-                      value={arr?.positionStartDate}
-                      onChange={(e) => handleInputChange(e, "positionStartDate", index)}
+                      value={arr?.start_date}
+                      onChange={(e) => handleInputChange(e, "start_date", index)}
                     />
-                    {!errorInputs[index].includes("positionStartDate") &&
-                      formData.experiences[index]?.positionStartDate !== "" && (
+                    {!errorInputs[index].includes("start_date") &&
+                      formData.experiences[index]?.start_date !== "" && (
                         <img
                           className={styles["correct-vector"]}
                           style={{ right: "0px" }}
@@ -587,7 +587,7 @@ export default function Experience({
                           alt="correct-vector"
                         />
                       )}
-                    {errorInputs[index].includes("positionStartDate") && (
+                    {errorInputs[index].includes("start_date") && (
                       <img
                         className={styles["error-vector"]}
                         src={ErrorVector}
@@ -600,7 +600,7 @@ export default function Experience({
                 <div className={styles["end-date-div"]}>
                   <p
                     className={
-                      errorInputs[index].includes("positionEndDate")
+                      errorInputs[index].includes("due_date")
                         ? `${styles["end-date-p"]} ${styles["error-text"]}`
                         : styles["end-date-p"]
                     }
@@ -610,22 +610,22 @@ export default function Experience({
                   <div className={styles["input-div"]}>
                     <input
                       className={
-                        errorInputs[index].includes("positionEndDate")
+                        errorInputs[index].includes("due_date")
                           ? `${styles["end-date-input"]} ${styles["error-input"]}`
                           : styles["end-date-input"]
                       }
                       style={
-                        !errorInputs[index].includes("positionEndDate") &&
-                        formData.experiences[index]?.positionEndDate !== ""
+                        !errorInputs[index].includes("due_date") &&
+                        formData.experiences[index]?.due_date !== ""
                           ? { border: "1px solid #98E37E" }
                           : {}
                       }
                       type="date"
-                      value={arr?.positionEndDate}
-                      onChange={(e) => handleInputChange(e, "positionEndDate", index)}
+                      value={arr?.due_date}
+                      onChange={(e) => handleInputChange(e, "due_date", index)}
                     />
-                    {!errorInputs[index].includes("positionEndDate") &&
-                      formData.experiences[index]?.positionEndDate !== "" && (
+                    {!errorInputs[index].includes("due_date") &&
+                      formData.experiences[index]?.due_date !== "" && (
                         <img
                           className={styles["correct-vector"]}
                           style={{ right: "0px" }}
@@ -633,7 +633,7 @@ export default function Experience({
                           alt="correct-vector"
                         />
                       )}
-                    {errorInputs[index].includes("positionEndDate") && (
+                    {errorInputs[index].includes("due_date") && (
                       <img
                         className={styles["error-vector"]}
                         src={ErrorVector}
@@ -647,7 +647,7 @@ export default function Experience({
               <div className={styles["description-div"]}>
                 <p
                   className={
-                    errorInputs[index].includes("positionDescription")
+                    errorInputs[index].includes("description")
                       ? `${styles["description-p"]} ${styles["error-text"]}`
                       : styles["description-p"]
                   }
@@ -658,28 +658,28 @@ export default function Experience({
                   <textarea
                     placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
                     className={
-                      errorInputs[index].includes("positionDescription")
+                      errorInputs[index].includes("description")
                         ? `${styles["description-textarea"]} ${styles["error-input"]}`
                         : styles["description-textarea"]
                     }
                     style={
-                      !errorInputs[index].includes("positionDescription") &&
-                      formData.experiences[index]?.positionDescription !== ""
+                      !errorInputs[index].includes("description") &&
+                      formData.experiences[index]?.description !== ""
                         ? { border: "1px solid #98E37E" }
                         : {}
                     }
-                    value={arr?.positionDescription}
-                    onChange={(e) => handleInputChange(e, "positionDescription", index)}
+                    value={arr?.description}
+                    onChange={(e) => handleInputChange(e, "description", index)}
                   ></textarea>
-                  {!errorInputs[index].includes("positionDescription") &&
-                    formData.experiences[index]?.positionDescription !== "" && (
+                  {!errorInputs[index].includes("description") &&
+                    formData.experiences[index]?.description !== "" && (
                       <img
                         className={styles["correct-vector"]}
                         src={CorrectVector}
                         alt="correct-vector"
                       />
                     )}
-                  {errorInputs[index].includes("positionDescription") && (
+                  {errorInputs[index].includes("description") && (
                     <img
                       className={styles["error-vector"]}
                       src={ErrorVector}

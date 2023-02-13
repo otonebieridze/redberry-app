@@ -19,8 +19,8 @@ export default function PersonalInfo({
       "name",
       "surname",
       "email",
-      "phone",
-      "imageSrc",
+      "phone_number",
+      "image",
     ]
   );
   const [isChanged, setIsChanged] = useState(
@@ -33,21 +33,21 @@ export default function PersonalInfo({
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       const dataUrl = reader.result;
-      setFormData({ ...formData, imageSrc: dataUrl });
-      setErrorInputs((prev) => prev.filter((item) => item !== "imageSrc"));
-      setErrorsArray((prev) => prev.filter((item) => item !== "imageSrc"));
+      setFormData({ ...formData, image: dataUrl });
+      setErrorInputs((prev) => prev.filter((item) => item !== "image"));
+      setErrorsArray((prev) => prev.filter((item) => item !== "image"));
 
       localStorage.setItem(
         "formData",
-        JSON.stringify({ ...formData, imageSrc: dataUrl })
+        JSON.stringify({ ...formData, image: dataUrl })
       );
       localStorage.setItem(
         "errorInputsPersonalInfo",
-        JSON.stringify(errorInputs.filter((item) => item !== "imageSrc"))
+        JSON.stringify(errorInputs.filter((item) => item !== "image"))
       );
       localStorage.setItem(
         "errorsArrayPersonalInfo",
-        JSON.stringify(errorsArray.filter((item) => item !== "imageSrc"))
+        JSON.stringify(errorsArray.filter((item) => item !== "image"))
       );
     };
 
@@ -155,38 +155,38 @@ export default function PersonalInfo({
           JSON.stringify([...errorsArray, "email"])
         );
       }
-    } else if (inputName === "phone") {
-      setFormData({ ...formData, phone: e.target.value });
+    } else if (inputName === "phone_number") {
+      setFormData({ ...formData, phone_number: e.target.value });
       const pattern = /^\+995\s\d{3}\s\d{2}\s\d{2}\s\d{2}$/;
       if (pattern.test(e.target.value)) {
-        setErrorInputs((prev) => prev.filter((item) => item !== "phone"));
-        setErrorsArray((prev) => prev.filter((item) => item !== "phone"));
+        setErrorInputs((prev) => prev.filter((item) => item !== "phone_number"));
+        setErrorsArray((prev) => prev.filter((item) => item !== "phone_number"));
         localStorage.setItem(
           "formData",
-          JSON.stringify({ ...formData, phone: e.target.value })
+          JSON.stringify({ ...formData, phone_number: e.target.value })
         );
         localStorage.setItem(
           "errorInputsPersonalInfo",
-          JSON.stringify(errorInputs.filter((item) => item !== "phone"))
+          JSON.stringify(errorInputs.filter((item) => item !== "phone_number"))
         );
         localStorage.setItem(
           "errorsArrayPersonalInfo",
-          JSON.stringify(errorsArray.filter((item) => item !== "phone"))
+          JSON.stringify(errorsArray.filter((item) => item !== "phone_number"))
         );
       } else {
-        setErrorInputs((prev) => [...prev, "phone"]);
-        setErrorsArray((prev) => [...prev, "phone"]);
+        setErrorInputs((prev) => [...prev, "phone_number"]);
+        setErrorsArray((prev) => [...prev, "phone_number"]);
         localStorage.setItem(
           "formData",
-          JSON.stringify({ ...formData, phone: e.target.value })
+          JSON.stringify({ ...formData, phone_number: e.target.value })
         );
         localStorage.setItem(
           "errorInputsPersonalInfo",
-          JSON.stringify([...errorInputs, "phone"])
+          JSON.stringify([...errorInputs, "phone_number"])
         );
         localStorage.setItem(
           "errorsArrayPersonalInfo",
-          JSON.stringify([...errorsArray, "phone"])
+          JSON.stringify([...errorsArray, "phone_number"])
         );
       }
     }
@@ -206,18 +206,18 @@ export default function PersonalInfo({
       setErrorInputs((prev) => [...prev, "email"]);
     }
     const pattern = /^\+995\s\d{3}\s\d{2}\s\d{2}\s\d{2}$/;
-    if (!pattern.test(formData.phone)) {
-      setErrorInputs((prev) => [...prev, "phone"]);
+    if (!pattern.test(formData.phone_number)) {
+      setErrorInputs((prev) => [...prev, "phone_number"]);
     }
-    if (formData.imageSrc === "") {
-      setErrorInputs((prev) => [...prev, "imageSrc"]);
+    if (formData.image === "") {
+      setErrorInputs((prev) => [...prev, "image"]);
       localStorage.setItem(
         "formData",
-        JSON.stringify({ ...formData, imageSrc: e.target.value })
+        JSON.stringify({ ...formData, image: e.target.value })
       );
       localStorage.setItem(
         "errorInputsPersonalInfo",
-        JSON.stringify([...errorInputs, "imageSrc"])
+        JSON.stringify([...errorInputs, "image"])
       );
     }
 
@@ -348,7 +348,7 @@ export default function PersonalInfo({
                 onChange={(e) => handleImageChange(e)}
                 className={styles["add-photo-input"]}
                 style={
-                  !errorInputs.includes("imageSrc") && formData.imageSrc !== ""
+                  !errorInputs.includes("image") && formData.image !== ""
                     ? { border: "1px solid #98E37E" }
                     : {}
                 }
@@ -360,7 +360,7 @@ export default function PersonalInfo({
                 ატვირთვა
               </label>
             </div>
-            {!errorInputs.includes("imageSrc") && formData.imageSrc !== "" && (
+            {!errorInputs.includes("image") && formData.image !== "" && (
               <img
                 className={styles["correct-vector"]}
                 style={{ right: "25px" }}
@@ -368,7 +368,7 @@ export default function PersonalInfo({
                 alt="correct-vector"
               />
             )}
-            {errorInputs.includes("imageSrc") && (
+            {errorInputs.includes("image") && (
               <img
                 className={styles["error-vector"]}
                 src={ErrorVector}
@@ -383,12 +383,12 @@ export default function PersonalInfo({
           <textarea
             placeholder="ზოგადი ინფო შენ შესახებ"
             className={styles["about-you-textarea"]}
-            value={formData.aboutYou}
+            value={formData.about_me}
             onChange={(e) => {
-              setFormData({ ...formData, aboutYou: e.target.value });
+              setFormData({ ...formData, about_me: e.target.value });
               localStorage.setItem(
                 "formData",
-                JSON.stringify({ ...formData, aboutYou: e.target.value })
+                JSON.stringify({ ...formData, about_me: e.target.value })
               );
             }}
           ></textarea>
@@ -444,7 +444,7 @@ export default function PersonalInfo({
         <div className={styles["phone-div"]}>
           <p
             className={
-              errorInputs.includes("phone")
+              errorInputs.includes("phone_number")
                 ? `${styles["phone-p"]} ${styles["error-text"]}`
                 : styles["phone-p"]
             }
@@ -457,27 +457,27 @@ export default function PersonalInfo({
               mask="+999 999 99 99 99"
               maskChar={null}
               className={
-                errorInputs.includes("phone")
+                errorInputs.includes("phone_number")
                   ? `${styles["phone-input"]} ${styles["error-input"]}`
                   : styles["phone-input"]
               }
               style={
-                !errorInputs.includes("phone") && formData.phone !== ""
+                !errorInputs.includes("phone_number") && formData.phone_number !== ""
                   ? { border: "1px solid #98E37E" }
                   : {}
               }
               type="text"
-              value={formData.phone}
-              onChange={(e) => handleInputChange(e, "phone")}
+              value={formData.phone_number}
+              onChange={(e) => handleInputChange(e, "phone_number")}
             />
-            {!errorInputs.includes("phone") && formData.phone !== "" && (
+            {!errorInputs.includes("phone_number") && formData.phone_number !== "" && (
               <img
                 className={styles["correct-vector"]}
                 src={CorrectVector}
                 alt="correct-vector"
               />
             )}
-            {errorInputs.includes("phone") && (
+            {errorInputs.includes("phone_number") && (
               <img
                 className={styles["error-vector"]}
                 src={ErrorVector}

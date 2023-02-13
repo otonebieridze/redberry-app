@@ -7,10 +7,10 @@ import EmailIcon from "../../../../assets/images/email-icon.png";
 export default function Resume({
   name,
   surname,
-  aboutYou,
+  about_me,
   email,
-  phone,
-  imageSrc,
+  phone_number,
+  image,
 
   experiences,
   educations,
@@ -34,30 +34,30 @@ export default function Resume({
         </p>
         <p
           className={styles["phone-p"]}
-          style={{ display: phone === "" ? "none" : "inherit" }}
+          style={{ display: phone_number === "" ? "none" : "inherit" }}
         >
           <img
             className={styles["phone-icon"]}
             src={PhoneIcon}
             alt="email-icon"
           />
-          <span className={styles["resume-phone"]}>{phone}</span>
+          <span className={styles["resume-phone"]}>{phone_number}</span>
         </p>
         <p
           className={styles["resume-about-you-title"]}
-          style={{ visibility: aboutYou === "" ? "hidden" : "visible" }}
+          style={{ visibility: about_me === "" ? "hidden" : "visible" }}
         >
           ᲩᲔᲛ ᲨᲔᲡᲐᲮᲔᲑ
         </p>
-        <p className={styles["resume-about-you-text"]}>{aboutYou}</p>
-        {imageSrc === "" ? null : (
-          <img className={styles["client-image"]} src={imageSrc} alt="image" />
+        <p className={styles["resume-about-you-text"]}>{about_me}</p>
+        {image === "" ? null : (
+          <img className={styles["client-image"]} src={image} alt="image" />
         )}
         {experiences[0].position !== "" ||
         experiences[0].employer !== "" ||
-        experiences[0].positionDescription !== "" ||
-        experiences[0].positionStartDate !== "" ||
-        experiences[0].positionEndDate !== "" ? (
+        experiences[0].description !== "" ||
+        experiences[0].start_date !== "" ||
+        experiences[0].due_date !== "" ? (
           <div className={styles["line-1"]} />
         ) : null}
       </div>
@@ -68,9 +68,9 @@ export default function Resume({
             <p className={styles["resume-experience-title"]}>{`${
               arr.position !== "" ||
               arr.employer !== "" ||
-              arr.positionDescription !== "" ||
-              arr.positionStartDate !== "" ||
-              arr.positionEndDate !== ""
+              arr.description !== "" ||
+              arr.start_date !== "" ||
+              arr.due_date !== ""
                 ? "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ"
                 : ""
             }`}</p>
@@ -78,16 +78,16 @@ export default function Resume({
               {`${arr.position} ${arr.employer}`}
             </p>
             <p className={styles["position-date"]}>
-              {arr.positionStartDate} {arr.positionEndDate}
+              {arr.start_date} {arr.due_date}
             </p>
             <p className={styles["position-description-text"]}>
-              {arr.positionDescription}
+              {arr.description}
             </p>
 
-            {(educations[0].college !== "" && educations[0].college !== undefined ||
-            educations[0].grade !== "" && educations[0].college !== undefined ||
-            educations[0].collegeEndDate !== "" && educations[0].college !== undefined ||
-            educations[0].educationDescription !== "" && educations[0].college !== undefined) || (
+            {(educations[0].institute !== "" && educations[0].institute !== undefined ||
+            educations[0].degree !== "" && educations[0].degree !== undefined ||
+            educations[0].due_date !== "" && educations[0].due_date !== undefined ||
+            educations[0].description !== "" && educations[0].description !== undefined) || (
               index + 1 < experiences.length
             ) ? (
               <div className={styles["line-2"]} />
@@ -99,20 +99,20 @@ export default function Resume({
       {educations.map((arr, index) => {
         return (
           <div key={index} className={styles["resume-educations"]}>
-            {arr.college !== "" ||
-            arr.grade !== "" ||
-            arr.collegeEndDate !== "" ||
-            arr.educationDescription !== "" ? (
+            {arr.institute !== "" ||
+            arr.degree !== "" ||
+            arr.due_date !== "" ||
+            arr.description !== "" ? (
               <p className={styles["resume-education-title"]}>ᲒᲐᲜᲐᲗᲚᲔᲑᲐ</p>
             ) : null}
             <p className={styles["college-grade-p"]}>
-              {arr.college} {arr.grade}
+              {arr.institute} {arr.degree}
             </p>
             <p className={styles["college-end-date"]}>
-              {arr.collegeEndDate}
+              {arr.due_date}
             </p>
             <p className={styles["education-description-text"]}>
-              {arr.educationDescription}
+              {arr.description}
             </p>
 
             {index + 1 < educations.length ? (

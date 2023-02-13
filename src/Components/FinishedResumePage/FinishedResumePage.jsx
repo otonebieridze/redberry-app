@@ -44,30 +44,30 @@ export default function FinishedResumePage({ setCurrentPage }) {
         </p>
         <p
           className={styles["phone-p"]}
-          style={{ display: formData.phone === "" ? "none" : "inherit" }}
+          style={{ display: formData.phone_number === "" ? "none" : "inherit" }}
         >
           <img
             className={styles["phone-icon"]}
             src={PhoneIcon}
             alt="email-icon"
           />
-          <span className={styles["resume-phone"]}>{formData.phone}</span>
+          <span className={styles["resume-phone"]}>{formData.phone_number}</span>
         </p>
         <p
           className={styles["resume-about-you-title"]}
-          style={{ visibility: formData.aboutYou === "" ? "hidden" : "visible" }}
+          style={{ visibility: formData.about_me === "" ? "hidden" : "visible" }}
         >
           ᲩᲔᲛ ᲨᲔᲡᲐᲮᲔᲑ
         </p>
-        <p className={styles["resume-about-you-text"]}>{formData.aboutYou}</p>
-        {formData.imageSrc === "" ? null : (
-          <img className={styles["client-image"]} src={formData.imageSrc} alt="image" />
+        <p className={styles["resume-about-you-text"]}>{formData.about_me}</p>
+        {formData.image === "" ? null : (
+          <img className={styles["client-image"]} src={formData.image} alt="image" />
         )}
         {formData.experiences[0].position !== "" ||
         formData.experiences[0].employer !== "" ||
-        formData.experiences[0].positionDescription !== "" ||
-        formData.experiences[0].positionStartDate !== "" ||
-        formData.experiences[0].positionEndDate !== "" ? (
+        formData.experiences[0].description !== "" ||
+        formData.experiences[0].start_date !== "" ||
+        formData.experiences[0].due_date !== "" ? (
           <div className={styles["line-1"]} />
         ) : null}
       </div>
@@ -78,9 +78,9 @@ export default function FinishedResumePage({ setCurrentPage }) {
             <p className={styles["resume-experience-title"]}>{`${
               arr.position !== "" ||
               arr.employer !== "" ||
-              arr.positionDescription !== "" ||
-              arr.positionStartDate !== "" ||
-              arr.positionEndDate !== ""
+              arr.description !== "" ||
+              arr.start_date !== "" ||
+              arr.due_date !== ""
                 ? "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ"
                 : ""
             }`}</p>
@@ -88,16 +88,16 @@ export default function FinishedResumePage({ setCurrentPage }) {
               {`${arr.position} ${arr.employer}`}
             </p>
             <p className={styles["position-date"]}>
-              {arr.positionStartDate} {arr.positionEndDate}
+              {arr.start_date} {arr.due_date}
             </p>
             <p className={styles["position-description-text"]}>
-              {arr.positionDescription}
+              {arr.description}
             </p>
 
-            {(formData.educations[0].college !== "" && formData.educations[0].college !== undefined ||
-            formData.educations[0].grade !== "" && formData.educations[0].college !== undefined ||
-            formData.educations[0].collegeEndDate !== "" && formData.educations[0].college !== undefined ||
-            formData.educations[0].educationDescription !== "" && formData.educations[0].college !== undefined) || (
+            {(formData.educations[0].institute !== "" && formData.educations[0].institute !== undefined ||
+            formData.educations[0].degree !== "" && formData.educations[0].degree !== undefined ||
+            formData.educations[0].due_date !== "" && formData.educations[0].due_date !== undefined ||
+            formData.educations[0].description !== "" && formData.educations[0].description !== undefined) || (
               index + 1 < formData.experiences.length
             ) ? (
               <div className={styles["line-2"]} />
@@ -109,20 +109,20 @@ export default function FinishedResumePage({ setCurrentPage }) {
       {formData.educations.map((arr, index) => {
         return (
           <div key={index} className={styles["resume-educations"]}>
-            {arr.college !== "" ||
-            arr.grade !== "" ||
-            arr.collegeEndDate !== "" ||
-            arr.educationDescription !== "" ? (
+            {arr.institute !== "" ||
+            arr.degree !== "" ||
+            arr.due_date !== "" ||
+            arr.description !== "" ? (
               <p className={styles["resume-education-title"]}>ᲒᲐᲜᲐᲗᲚᲔᲑᲐ</p>
             ) : null}
             <p className={styles["college-grade-p"]}>
-              {arr.college} {arr.grade}
+              {arr.institute} {arr.degree}
             </p>
             <p className={styles["college-end-date"]}>
-              {arr.collegeEndDate}
+              {arr.due_date}
             </p>
             <p className={styles["education-description-text"]}>
-              {arr.educationDescription}
+              {arr.description}
             </p>
 
             {index + 1 < formData.educations.length ? (

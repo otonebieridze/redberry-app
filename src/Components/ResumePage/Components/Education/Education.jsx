@@ -29,10 +29,10 @@ export default function Education({
   );
   const [errorsArray, setErrorsArray] = useState(
     JSON.parse(localStorage.getItem("errorsArrayEducation")) || [[
-      "college",
-      "grade",
-      "collegeEndDate",
-      "educationDescription",
+      "institute",
+      "degree",
+      "due_date",
+      "description",
     ]]
   );
 
@@ -41,9 +41,9 @@ export default function Education({
   }, [])
 
   const handleInputChange = (e, inputName, index) => {
-    if (inputName === "college") {
+    if (inputName === "institute") {
       let newEducationsArr = formData.educations;
-      newEducationsArr[index].college = e.target.value;
+      newEducationsArr[index].institute = e.target.value;
       setFormData({...formData, educations: newEducationsArr})
       localStorage.setItem(
         "formData",
@@ -51,11 +51,11 @@ export default function Education({
       );
       if (e.target.value.length >= 2) {
         let newErrorInputs = errorInputs
-        newErrorInputs[index] = errorInputs[index]?.filter(item => item !== "college")
+        newErrorInputs[index] = errorInputs[index]?.filter(item => item !== "institute")
         setErrorInputs(newErrorInputs)
 
         let newErrorsArray = errorsArray
-        newErrorsArray[index] = errorsArray[index]?.filter(item => item !== "college")
+        newErrorsArray[index] = errorsArray[index]?.filter(item => item !== "institute")
         setErrorsArray(newErrorsArray)
 
         localStorage.setItem(
@@ -68,11 +68,11 @@ export default function Education({
         );
       } else {
         let newErrorInputs = errorInputs
-        newErrorInputs[index]?.push("college")
+        newErrorInputs[index]?.push("institute")
         setErrorInputs(newErrorInputs)
 
         let newErrorsArray = errorsArray
-        newErrorsArray[index]?.push("college")
+        newErrorsArray[index]?.push("institute")
         setErrorsArray(newErrorsArray)
 
         localStorage.setItem(
@@ -84,9 +84,9 @@ export default function Education({
           JSON.stringify(newErrorsArray)
         );
       }
-    } else if (inputName === "educationDescription") {
+    } else if (inputName === "description") {
       let newEducationsArr = formData.educations;
-      newEducationsArr[index].educationDescription = e.target.value;
+      newEducationsArr[index].description = e.target.value;
       setFormData({...formData, educations: newEducationsArr})
       localStorage.setItem(
         "formData",
@@ -94,11 +94,11 @@ export default function Education({
       );
       if (e.target.value.length !== 0) {
         let newErrorInputs = errorInputs
-        newErrorInputs[index] = errorInputs[index]?.filter(item => item !== "educationDescription")
+        newErrorInputs[index] = errorInputs[index]?.filter(item => item !== "description")
         setErrorInputs(newErrorInputs)
 
         let newErrorsArray = errorsArray
-        newErrorsArray[index] = errorsArray[index]?.filter(item => item !== "educationDescription")
+        newErrorsArray[index] = errorsArray[index]?.filter(item => item !== "description")
         setErrorsArray(newErrorsArray)
 
         localStorage.setItem(
@@ -111,11 +111,11 @@ export default function Education({
         );
       } else {
         let newErrorInputs = errorInputs
-        newErrorInputs[index]?.push("educationDescription")
+        newErrorInputs[index]?.push("description")
         setErrorInputs(newErrorInputs)
 
         let newErrorsArray = errorsArray
-        newErrorsArray[index]?.push("educationDescription")
+        newErrorsArray[index]?.push("description")
         setErrorsArray(newErrorsArray)
 
         localStorage.setItem(
@@ -127,9 +127,9 @@ export default function Education({
           JSON.stringify(newErrorsArray)
         );
       }
-    } else if (inputName === "grade") {
+    } else if (inputName === "degree") {
       let newEducationsArr = formData.educations;
-      newEducationsArr[index].grade = e.target.value;
+      newEducationsArr[index].degree = e.target.value;
       setFormData({...formData, educations: newEducationsArr})
       localStorage.setItem(
         "formData",
@@ -137,11 +137,11 @@ export default function Education({
       );
       
       let newErrorInputs = errorInputs
-      newErrorInputs[index] = errorInputs[index]?.filter(item => item !== "grade")
+      newErrorInputs[index] = errorInputs[index]?.filter(item => item !== "degree")
       setErrorInputs(newErrorInputs)
 
       let newErrorsArray = errorsArray
-      newErrorsArray[index] = errorsArray[index]?.filter(item => item !== "grade")
+      newErrorsArray[index] = errorsArray[index]?.filter(item => item !== "degree")
       setErrorsArray(newErrorsArray)
 
       localStorage.setItem(
@@ -152,9 +152,9 @@ export default function Education({
         "errorsArrayEducation",
         JSON.stringify(newErrorsArray)
       );
-    } else if (inputName === "collegeEndDate") {
+    } else if (inputName === "due_date") {
       let newEducationsArr = formData.educations;
-      newEducationsArr[index].collegeEndDate = e.target.value;
+      newEducationsArr[index].due_date = e.target.value;
       setFormData({...formData, educations: newEducationsArr})
       localStorage.setItem(
         "formData",
@@ -162,11 +162,11 @@ export default function Education({
       );
       if (e.target.value.length === 10) {
         let newErrorInputs = errorInputs
-        newErrorInputs[index] = errorInputs[index]?.filter(item => item !== "collegeEndDate")
+        newErrorInputs[index] = errorInputs[index]?.filter(item => item !== "due_date")
         setErrorInputs(newErrorInputs)
 
         let newErrorsArray = errorsArray
-        newErrorsArray[index] = errorsArray[index]?.filter(item => item !== "collegeEndDate")
+        newErrorsArray[index] = errorsArray[index]?.filter(item => item !== "due_date")
         setErrorsArray(newErrorsArray)
         
         localStorage.setItem(
@@ -179,11 +179,11 @@ export default function Education({
         );
       } else {
         let newErrorInputs = errorInputs
-        newErrorInputs[index]?.push("collegeEndDate")
+        newErrorInputs[index]?.push("due_date")
         setErrorInputs(newErrorInputs)
 
         let newErrorsArray = errorsArray
-        newErrorsArray[index]?.push("collegeEndDate")
+        newErrorsArray[index]?.push("due_date")
         setErrorsArray(newErrorsArray)
 
         localStorage.setItem(
@@ -218,39 +218,55 @@ export default function Education({
     setErrorInputs(JSON.parse(localStorage.getItem("errorInputsEducation")) || [[]]);
   }, [submitClickFlag])
 
+
+  function dataURLtoFile(dataurl, filename) {
+    var arr = dataurl.split(","),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], filename, { type: mime });
+  }
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     formData.educations.map((obj, index) => {
-      if (obj.college.length < 2) {
+      if (obj.institute.length < 2) {
         const addedErrorInputs = errorInputs
-        addedErrorInputs[index].push("college")
+        addedErrorInputs[index].push("institute")
         setErrorInputs(addedErrorInputs);
         localStorage.setItem("errorInputsEducation", JSON.stringify(errorInputs));
       }
       setSubmitClickFlag(!submitClickFlag)
     })
     formData.educations.map((obj, index) => {
-      if (obj.educationDescription === "") {
+      if (obj.description === "") {
         const addedErrorInputs = errorInputs
-        addedErrorInputs[index].push("educationDescription")
+        addedErrorInputs[index].push("description")
         setErrorInputs(addedErrorInputs);
         localStorage.setItem("errorInputsEducation", JSON.stringify(errorInputs));
       }
       setSubmitClickFlag(!submitClickFlag)
     })
     formData.educations.map((obj, index) => {
-      if (obj.grade === "") {
+      if (obj.degree === "") {
         const addedErrorInputs = errorInputs
-        addedErrorInputs[index].push("grade")
+        addedErrorInputs[index].push("degree")
         setErrorInputs(addedErrorInputs);
         localStorage.setItem("errorInputsEducation", JSON.stringify(errorInputs));
       }
       setSubmitClickFlag(!submitClickFlag)
     })
     formData.educations.map((obj, index) => {
-      if (obj.collegeEndDate.length !== 10) {
+      if (obj.due_date.length !== 10) {
         const addedErrorInputs = errorInputs
-        addedErrorInputs[index].push("collegeEndDate")
+        addedErrorInputs[index].push("due_date")
         setErrorInputs(addedErrorInputs);
         localStorage.setItem("errorInputsEducation", JSON.stringify(errorInputs));
       }
@@ -268,59 +284,59 @@ export default function Education({
     if (isErrorsArrayEmpty()) {
       const newEducations = formData.educations;
       newEducations.push({
-        college: "",
-        grade: "",
-        collegeEndDate: "",
-        educationDescription: "",
+        institute: "",
+        degree: "",
+        due_date: "",
+        description: "",
       })
       setFormData({...formData, educations: newEducations})
       localStorage.setItem("formData", JSON.stringify(formData))
       setErrorInputs(prev => [...prev, []])
       localStorage.setItem("errorInputsEducation", JSON.stringify([...errorInputs, []]))
       setErrorsArray(prev => [...prev, [
-        "college",
-        "grade",
-        "collegeEndDate",
-        "educationDescription",
+        "institute",
+        "degree",
+        "due_date",
+        "description",
       ]])
       localStorage.setItem("errorsArrayEducation", JSON.stringify([...errorsArray, [
-        "college",
-        "grade",
-        "collegeEndDate",
-        "educationDescription",
+        "institute",
+        "degree",
+        "due_date",
+        "description",
       ]]))
     } else {
       formData.educations.map((obj, index) => {
-        if (obj.college.length < 2) {
+        if (obj.institute.length < 2) {
           const addedErrorInputs = errorInputs
-          addedErrorInputs[index].push("college")
+          addedErrorInputs[index].push("institute")
           setErrorInputs(addedErrorInputs);
           localStorage.setItem("errorInputsEducation", JSON.stringify(errorInputs));
         }
         setSubmitClickFlag(!submitClickFlag)
       })
       formData.educations.map((obj, index) => {
-        if (obj.educationDescription === "") {
+        if (obj.description === "") {
           const addedErrorInputs = errorInputs
-          addedErrorInputs[index].push("educationDescription")
+          addedErrorInputs[index].push("description")
           setErrorInputs(addedErrorInputs);
           localStorage.setItem("errorInputsEducation", JSON.stringify(errorInputs));
         }
         setSubmitClickFlag(!submitClickFlag)
       })
       formData.educations.map((obj, index) => {
-        if (obj.grade === "") {
+        if (obj.degree === "") {
           const addedErrorInputs = errorInputs
-          addedErrorInputs[index].push("grade")
+          addedErrorInputs[index].push("degree")
           setErrorInputs(addedErrorInputs);
           localStorage.setItem("errorInputsEducation", JSON.stringify(errorInputs));
         }
         setSubmitClickFlag(!submitClickFlag)
       })
       formData.educations.map((obj, index) => {
-        if (obj.collegeEndDate.length !== 10) {
+        if (obj.due_date.length !== 10) {
           const addedErrorInputs = errorInputs
-          addedErrorInputs[index].push("collegeEndDate")
+          addedErrorInputs[index].push("due_date")
           setErrorInputs(addedErrorInputs);
           localStorage.setItem("errorInputsEducation", JSON.stringify(errorInputs));
         }
@@ -353,7 +369,7 @@ export default function Education({
               <div className={styles["college-div"]}>
                 <p
                   className={
-                    errorInputs[index].includes("college")
+                    errorInputs[index].includes("institute")
                       ? `${styles["college-p"]} ${styles["error-text"]}`
                       : styles["college-p"]
                   }
@@ -364,27 +380,27 @@ export default function Education({
                   <input
                     placeholder="სასწავლებელი"
                     className={
-                      errorInputs[index].includes("college")
+                      errorInputs[index].includes("institute")
                         ? `${styles["college-input"]} ${styles["error-input"]}`
                         : styles["college-input"]
                     }
                     style={
-                      !errorInputs[index].includes("college") && formData.educations[index].college !== ""
+                      !errorInputs[index].includes("institute") && formData.educations[index].institute !== ""
                         ? { border: "1px solid #98E37E" }
                         : {}
                     }
                     type="text"
-                    value={educationArray?.college}
-                    onChange={(e) => handleInputChange(e, "college", index)}
+                    value={educationArray?.institute}
+                    onChange={(e) => handleInputChange(e, "institute", index)}
                   />
-                  {!errorInputs[index].includes("college") && formData.educations[index]?.college !== "" && (
+                  {!errorInputs[index].includes("institute") && formData.educations[index]?.institute !== "" && (
                     <img
                       className={styles["correct-vector"]}
                       src={CorrectVector}
                       alt="correct-vector"
                     />
                   )}
-                  {errorInputs[index].includes("college") && (
+                  {errorInputs[index].includes("institute") && (
                     <img
                       className={styles["error-vector"]}
                       src={ErrorVector}
@@ -398,7 +414,7 @@ export default function Education({
               <div className={styles["grade-div"]}>
                 <p
                   className={
-                    errorInputs[index].includes("grade")
+                    errorInputs[index].includes("degree")
                       ? `${styles["grade-p"]} ${styles["error-text"]}`
                       : styles["grade-p"]
                   }
@@ -407,18 +423,18 @@ export default function Education({
                 </p>
                 <div className={styles["input-div"]}>
                   <select
-                    value={educationArray?.grade || "აირჩიეთ ხარისხი"}
+                    value={educationArray?.degree || "აირჩიეთ ხარისხი"}
                     className={
-                      errorInputs[index].includes("grade")
+                      errorInputs[index].includes("degree")
                         ? `${styles["grade-input"]} ${styles["error-input"]}`
                         : styles["grade-input"]
                     }
                     style={
-                      !errorInputs[index].includes("grade") && formData.educations[index]?.grade !== ""
+                      !errorInputs[index].includes("degree") && formData.educations[index]?.degree !== ""
                         ? { border: "1px solid #98E37E" }
                         : {}
                     }
-                    onChange={(e) => handleInputChange(e, "grade", index)}
+                    onChange={(e) => handleInputChange(e, "degree", index)}
                   >
                     <option disabled hidden>
                       აირჩიეთ ხარისხი
@@ -429,7 +445,7 @@ export default function Education({
                       )
                     })}
                   </select>
-                  {!errorInputs[index].includes("grade") && formData.educations[index]?.grade !== "" && (
+                  {!errorInputs[index].includes("degree") && formData.educations[index]?.degree !== "" && (
                     <img
                       className={styles["correct-vector"]}
                       style={{ right: "0px" }}
@@ -437,7 +453,7 @@ export default function Education({
                       alt="correct-vector"
                     />
                   )}
-                  {errorInputs[index].includes("grade") && (
+                  {errorInputs[index].includes("degree") && (
                     <img
                       className={styles["error-vector"]}
                       src={ErrorVector}
@@ -450,7 +466,7 @@ export default function Education({
               <div className={styles["end-date-div"]}>
                 <p
                   className={
-                    errorInputs[index].includes("collegeEndDate")
+                    errorInputs[index].includes("due_date")
                       ? `${styles["end-date-p"]} ${styles["error-text"]}`
                       : styles["end-date-p"]
                   }
@@ -460,22 +476,22 @@ export default function Education({
                 <div className={styles["input-div"]}>
                   <input
                     className={
-                      errorInputs[index].includes("collegeEndDate")
+                      errorInputs[index].includes("due_date")
                         ? `${styles["end-date-input"]} ${styles["error-input"]}`
                         : styles["end-date-input"]
                     }
                     style={
-                      !errorInputs[index].includes("collegeEndDate") &&
-                      formData.educations[index]?.collegeEndDate !== ""
+                      !errorInputs[index].includes("due_date") &&
+                      formData.educations[index]?.due_date !== ""
                         ? { border: "1px solid #98E37E" }
                         : {}
                     }
                     type="date"
-                    value={educationArray?.collegeEndDate}
-                    onChange={(e) => handleInputChange(e, "collegeEndDate", index)}
+                    value={educationArray?.due_date}
+                    onChange={(e) => handleInputChange(e, "due_date", index)}
                   />
-                  {!errorInputs[index].includes("collegeEndDate") &&
-                    formData.educations[index].collegeEndDate !== "" && (
+                  {!errorInputs[index].includes("due_date") &&
+                    formData.educations[index].due_date !== "" && (
                       <img
                         className={styles["correct-vector"]}
                         style={{ right: "0px" }}
@@ -483,7 +499,7 @@ export default function Education({
                         alt="correct-vector"
                       />
                     )}
-                  {errorInputs[index].includes("collegeEndDate") && (
+                  {errorInputs[index].includes("due_date") && (
                     <img
                       className={styles["error-vector"]}
                       src={ErrorVector}
@@ -496,7 +512,7 @@ export default function Education({
               <div className={styles["description-div"]}>
                 <p
                   className={
-                    errorInputs[index].includes("educationDescription")
+                    errorInputs[index].includes("description")
                       ? `${styles["description-p"]} ${styles["error-text"]}`
                       : styles["description-p"]
                   }
@@ -507,28 +523,28 @@ export default function Education({
                   <textarea
                     placeholder="განათლების აღწერა"
                     className={
-                      errorInputs[index].includes("educationDescription")
+                      errorInputs[index].includes("description")
                         ? `${styles["description-textarea"]} ${styles["error-input"]}`
                         : styles["description-textarea"]
                     }
                     style={
-                      !errorInputs[index].includes("educationDescription") &&
-                      formData.educations[index]?.educationDescription !== ""
+                      !errorInputs[index].includes("description") &&
+                      formData.educations[index]?.description !== ""
                         ? { border: "1px solid #98E37E" }
                         : {}
                     }
-                    value={educationArray?.educationDescription}
-                    onChange={(e) => handleInputChange(e, "educationDescription", index)}
+                    value={educationArray?.description}
+                    onChange={(e) => handleInputChange(e, "description", index)}
                   ></textarea>
-                  {!errorInputs[index].includes("educationDescription") &&
-                    formData.educations[index]?.educationDescription !== "" && (
+                  {!errorInputs[index].includes("description") &&
+                    formData.educations[index]?.description !== "" && (
                       <img
                         className={styles["correct-vector"]}
                         src={CorrectVector}
                         alt="correct-vector"
                       />
                     )}
-                  {errorInputs[index].includes("educationDescription") && (
+                  {errorInputs[index].includes("description") && (
                     <img
                       className={styles["error-vector"]}
                       src={ErrorVector}

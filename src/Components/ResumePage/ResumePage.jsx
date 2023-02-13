@@ -12,10 +12,11 @@ export default function ResumePage({ setCurrentPage }) {
   const [formData, setFormData] = useState({
     name: JSON.parse(localStorage.getItem("formData"))?.name || "",
     surname: JSON.parse(localStorage.getItem("formData"))?.surname || "",
-    aboutYou: JSON.parse(localStorage.getItem("formData"))?.aboutYou || "",
+    about_me: JSON.parse(localStorage.getItem("formData"))?.about_me || "",
     email: JSON.parse(localStorage.getItem("formData"))?.email || "",
-    phone: JSON.parse(localStorage.getItem("formData"))?.phone || "",
-    imageSrc: JSON.parse(localStorage.getItem("formData"))?.imageSrc || "",
+    phone_number:
+      JSON.parse(localStorage.getItem("formData"))?.phone_number || "",
+    image: JSON.parse(localStorage.getItem("formData"))?.image || "",
     experiences: [
       {
         position:
@@ -24,32 +25,32 @@ export default function ResumePage({ setCurrentPage }) {
         employer:
           JSON.parse(localStorage.getItem("formData"))?.experiences[0]
             .employer || "",
-        positionStartDate:
+        start_date:
           JSON.parse(localStorage.getItem("formData"))?.experiences[0]
-            .positionStartDate || "",
-        positionEndDate:
+            .start_date || "",
+        due_date:
           JSON.parse(localStorage.getItem("formData"))?.experiences[0]
-            .positionEndDate || "",
-        positionDescription:
+            .due_date || "",
+        description:
           JSON.parse(localStorage.getItem("formData"))?.experiences[0]
-            .positionDescription || "",
-      }
+            .description || "",
+      },
     ],
     educations: [
       {
-        college:
-          JSON.parse(localStorage.getItem("formData"))?.educations[0].college ||
-          "",
-        grade:
-          JSON.parse(localStorage.getItem("formData"))?.educations[0].grade ||
-          "",
-        collegeEndDate:
+        institute:
           JSON.parse(localStorage.getItem("formData"))?.educations[0]
-            .collegeEndDate || "",
-        educationDescription:
+            .institute || "",
+        degree:
+          JSON.parse(localStorage.getItem("formData"))?.educations[0].degree ||
+          "",
+        due_date:
           JSON.parse(localStorage.getItem("formData"))?.educations[0]
-            .educationDescription || "",
-      }
+            .due_date || "",
+        description:
+          JSON.parse(localStorage.getItem("formData"))?.educations[0]
+            .description || "",
+      },
     ],
   });
 
