@@ -9,7 +9,6 @@ export default function ResumePage({ setCurrentPage }) {
   const [currentResumeStage, setCurrentResumeStage] = useState(
     JSON.parse(localStorage.getItem("currentResumeStage")) || 1
   );
-
   const [formData, setFormData] = useState({
     name: JSON.parse(localStorage.getItem("formData"))?.name || "",
     surname: JSON.parse(localStorage.getItem("formData"))?.surname || "",
@@ -17,7 +16,6 @@ export default function ResumePage({ setCurrentPage }) {
     email: JSON.parse(localStorage.getItem("formData"))?.email || "",
     phone: JSON.parse(localStorage.getItem("formData"))?.phone || "",
     imageSrc: JSON.parse(localStorage.getItem("formData"))?.imageSrc || "",
-
     experiences: [
       {
         position:
@@ -35,9 +33,8 @@ export default function ResumePage({ setCurrentPage }) {
         positionDescription:
           JSON.parse(localStorage.getItem("formData"))?.experiences[0]
             .positionDescription || "",
-      },
+      }
     ],
-
     educations: [
       {
         college:

@@ -27,7 +27,7 @@ export default function Experience({
       "positionDescription",
     ]]
   );
-  const [mainForms, setMainForms] = useState(JSON.parse(localStorage.getItem("mainForms")) || ["form"])
+  
   const handleInputChange = (e, inputName, index) => {
     if (inputName === "position") {
       const newExperienceArray = formData.experiences;
@@ -314,9 +314,7 @@ export default function Experience({
       localStorage.setItem("errorsArrayExperience", JSON.stringify(errorsArray))
 
       setFormData({...formData, experiences: newExperiencesArr})
-      setMainForms(prev => [...prev, "form"])
       localStorage.setItem("formData", JSON.stringify(formData))
-      localStorage.setItem("mainForms", JSON.stringify([...mainForms, "form"]))
     } else {
       formData.experiences.map((obj, index) => {
         if (obj.position.length < 2) {
@@ -455,7 +453,7 @@ export default function Experience({
       </header>
 
       <form className={styles["experience-form"]} onSubmit={handleSubmit}>
-        {mainForms.map((form, index) => {
+        {formData.experiences.map((arr, index) => {
           return (
             <div key={index} className={styles["form-main"]}>
               <div className={styles["position-div"]}>
@@ -482,7 +480,7 @@ export default function Experience({
                         : {}
                     }
                     type="text"
-                    value={formData.experiences[index]?.position}
+                    value={arr?.position}
                     onChange={(e) => handleInputChange(e, "position", index)}
                   />
                   {!errorInputs[index].includes("position") && formData.experiences[index]?.position !== "" && (
@@ -529,7 +527,7 @@ export default function Experience({
                         : {}
                     }
                     type="text"
-                    value={formData.experiences[index]?.employer}
+                    value={arr.employer}
                     onChange={(e) => handleInputChange(e, "employer", index)}
                   />
                   {!errorInputs[index].includes("employer") && formData.experiences[index]?.employer !== "" && (
@@ -552,95 +550,97 @@ export default function Experience({
                 </p>
               </div>
 
-              <div className={styles["start-date-div"]}>
-                <p
-                  className={
-                    errorInputs[index].includes("positionStartDate")
-                      ? `${styles["start-date-p"]} ${styles["error-text"]}`
-                      : styles["start-date-p"]
-                  }
-                >
-                  დაწყების რიცხვი
-                </p>
-                <div className={styles["input-div"]}>
-                  <input
+              <div className={styles["start-end-date-container"]}>
+                <div className={styles["start-date-div"]}>
+                  <p
                     className={
                       errorInputs[index].includes("positionStartDate")
-                        ? `${styles["start-date-input"]} ${styles["error-input"]}`
-                        : styles["start-date-input"]
+                        ? `${styles["start-date-p"]} ${styles["error-text"]}`
+                        : styles["start-date-p"]
                     }
-                    style={
-                      !errorInputs[index].includes("positionStartDate") &&
-                      formData.experiences[index]?.positionStartDate !== ""
-                        ? { border: "1px solid #98E37E" }
-                        : {}
-                    }
-                    type="date"
-                    value={formData.experiences[index]?.positionStartDate}
-                    onChange={(e) => handleInputChange(e, "positionStartDate", index)}
-                  />
-                  {!errorInputs[index].includes("positionStartDate") &&
-                    formData.experiences[index]?.positionStartDate !== "" && (
+                  >
+                    დაწყების რიცხვი
+                  </p>
+                  <div className={styles["input-div"]}>
+                    <input
+                      className={
+                        errorInputs[index].includes("positionStartDate")
+                          ? `${styles["start-date-input"]} ${styles["error-input"]}`
+                          : styles["start-date-input"]
+                      }
+                      style={
+                        !errorInputs[index].includes("positionStartDate") &&
+                        formData.experiences[index]?.positionStartDate !== ""
+                          ? { border: "1px solid #98E37E" }
+                          : {}
+                      }
+                      type="date"
+                      value={arr?.positionStartDate}
+                      onChange={(e) => handleInputChange(e, "positionStartDate", index)}
+                    />
+                    {!errorInputs[index].includes("positionStartDate") &&
+                      formData.experiences[index]?.positionStartDate !== "" && (
+                        <img
+                          className={styles["correct-vector"]}
+                          style={{ right: "0px" }}
+                          src={CorrectVector}
+                          alt="correct-vector"
+                        />
+                      )}
+                    {errorInputs[index].includes("positionStartDate") && (
                       <img
-                        className={styles["correct-vector"]}
-                        style={{ right: "0px" }}
-                        src={CorrectVector}
-                        alt="correct-vector"
+                        className={styles["error-vector"]}
+                        src={ErrorVector}
+                        alt="error-vector"
                       />
                     )}
-                  {errorInputs[index].includes("positionStartDate") && (
-                    <img
-                      className={styles["error-vector"]}
-                      src={ErrorVector}
-                      alt="error-vector"
-                    />
-                  )}
+                  </div>
                 </div>
-              </div>
 
-              <div className={styles["end-date-div"]}>
-                <p
-                  className={
-                    errorInputs[index].includes("positionEndDate")
-                      ? `${styles["end-date-p"]} ${styles["error-text"]}`
-                      : styles["end-date-p"]
-                  }
-                >
-                  დამთავრების რიცხვი
-                </p>
-                <div className={styles["input-div"]}>
-                  <input
+                <div className={styles["end-date-div"]}>
+                  <p
                     className={
                       errorInputs[index].includes("positionEndDate")
-                        ? `${styles["end-date-input"]} ${styles["error-input"]}`
-                        : styles["end-date-input"]
+                        ? `${styles["end-date-p"]} ${styles["error-text"]}`
+                        : styles["end-date-p"]
                     }
-                    style={
-                      !errorInputs[index].includes("positionEndDate") &&
-                      formData.experiences[index]?.positionEndDate !== ""
-                        ? { border: "1px solid #98E37E" }
-                        : {}
-                    }
-                    type="date"
-                    value={formData.experiences[index]?.positionEndDate}
-                    onChange={(e) => handleInputChange(e, "positionEndDate", index)}
-                  />
-                  {!errorInputs[index].includes("positionEndDate") &&
-                    formData.experiences[index]?.positionEndDate !== "" && (
+                  >
+                    დამთავრების რიცხვი
+                  </p>
+                  <div className={styles["input-div"]}>
+                    <input
+                      className={
+                        errorInputs[index].includes("positionEndDate")
+                          ? `${styles["end-date-input"]} ${styles["error-input"]}`
+                          : styles["end-date-input"]
+                      }
+                      style={
+                        !errorInputs[index].includes("positionEndDate") &&
+                        formData.experiences[index]?.positionEndDate !== ""
+                          ? { border: "1px solid #98E37E" }
+                          : {}
+                      }
+                      type="date"
+                      value={arr?.positionEndDate}
+                      onChange={(e) => handleInputChange(e, "positionEndDate", index)}
+                    />
+                    {!errorInputs[index].includes("positionEndDate") &&
+                      formData.experiences[index]?.positionEndDate !== "" && (
+                        <img
+                          className={styles["correct-vector"]}
+                          style={{ right: "0px" }}
+                          src={CorrectVector}
+                          alt="correct-vector"
+                        />
+                      )}
+                    {errorInputs[index].includes("positionEndDate") && (
                       <img
-                        className={styles["correct-vector"]}
-                        style={{ right: "0px" }}
-                        src={CorrectVector}
-                        alt="correct-vector"
+                        className={styles["error-vector"]}
+                        src={ErrorVector}
+                        alt="error-vector"
                       />
                     )}
-                  {errorInputs[index].includes("positionEndDate") && (
-                    <img
-                      className={styles["error-vector"]}
-                      src={ErrorVector}
-                      alt="error-vector"
-                    />
-                  )}
+                  </div>
                 </div>
               </div>
 
@@ -668,7 +668,7 @@ export default function Experience({
                         ? { border: "1px solid #98E37E" }
                         : {}
                     }
-                    value={formData.experiences[index]?.positionDescription}
+                    value={arr?.positionDescription}
                     onChange={(e) => handleInputChange(e, "positionDescription", index)}
                   ></textarea>
                   {!errorInputs[index].includes("positionDescription") &&
@@ -693,13 +693,15 @@ export default function Experience({
             </div>
           )
         })}
-
-        <button
-          className={styles["add-experience-btn"]}
-          onClick={handleAddExperienceClick}
-        >
-          მეტი გამოცდილების დამატება
-        </button>
+        
+        <div className={styles["add-experience-btn-container"]}>
+          <button
+            className={styles["add-experience-btn"]}
+            onClick={handleAddExperienceClick}
+          >
+            მეტი გამოცდილების დამატება
+          </button>
+        </div>
 
         <div className={styles["form-footer-container"]}>
           <div className={styles["form-footer"]}>

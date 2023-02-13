@@ -245,97 +245,99 @@ export default function PersonalInfo({
       </header>
 
       <form onSubmit={handleSubmit}>
-        <div className={styles["name-div"]}>
-          <p
-            className={
-              errorInputs.includes("name")
-                ? `${styles["name-title"]} ${styles["error-text"]}`
-                : styles["name-title"]
-            }
-          >
-            სახელი
-          </p>
-          <div className={styles["input-div"]}>
-            <input
-              placeholder="ანზორ"
+        <div className={styles["name-surname-container"]}>
+          <div className={styles["name-div"]}>
+            <p
               className={
                 errorInputs.includes("name")
-                  ? `${styles["name-input"]} ${styles["error-input"]}`
-                  : styles["name-input"]
+                  ? `${styles["name-title"]} ${styles["error-text"]}`
+                  : styles["name-title"]
               }
-              style={
-                !errorInputs.includes("name") && formData.name !== ""
-                  ? { border: "1px solid #98E37E" }
-                  : {}
-              }
-              type="text"
-              value={formData.name}
-              onChange={(e) => handleInputChange(e, "name")}
-            />
-            {!errorInputs.includes("name") && formData.name !== "" && (
-              <img
-                className={styles["correct-vector"]}
-                src={CorrectVector}
-                alt="correct-vector"
+            >
+              სახელი
+            </p>
+            <div className={styles["input-div"]}>
+              <input
+                placeholder="ანზორ"
+                className={
+                  errorInputs.includes("name")
+                    ? `${styles["name-input"]} ${styles["error-input"]}`
+                    : styles["name-input"]
+                }
+                style={
+                  !errorInputs.includes("name") && formData.name !== ""
+                    ? { border: "1px solid #98E37E" }
+                    : {}
+                }
+                type="text"
+                value={formData.name}
+                onChange={(e) => handleInputChange(e, "name")}
               />
-            )}
-            {errorInputs.includes("name") && (
-              <img
-                className={styles["error-vector"]}
-                src={ErrorVector}
-                alt="error-vector"
-              />
-            )}
+              {!errorInputs.includes("name") && formData.name !== "" && (
+                <img
+                  className={styles["correct-vector"]}
+                  src={CorrectVector}
+                  alt="correct-vector"
+                />
+              )}
+              {errorInputs.includes("name") && (
+                <img
+                  className={styles["error-vector"]}
+                  src={ErrorVector}
+                  alt="error-vector"
+                />
+              )}
+            </div>
+            <p className={styles["name-validation-text"]}>
+              მინიმუმ 2 ასო, ქართული ასოები
+            </p>
           </div>
-          <p className={styles["name-validation-text"]}>
-            მინიმუმ 2 ასო, ქართული ასოები
-          </p>
-        </div>
-        <div className={styles["surname-div"]}>
-          <p
-            className={
-              errorInputs.includes("surname")
-                ? `${styles["surname-title"]} ${styles["error-text"]}`
-                : styles["surname-title"]
-            }
-          >
-            გვარი
-          </p>
-          <div className={styles["input-div"]}>
-            <input
-              placeholder="მუმლაძე"
+          <div className={styles["surname-div"]}>
+            <p
               className={
                 errorInputs.includes("surname")
-                  ? `${styles["surname-input"]} ${styles["error-input"]}`
-                  : styles["surname-input"]
+                  ? `${styles["surname-title"]} ${styles["error-text"]}`
+                  : styles["surname-title"]
               }
-              style={
-                !errorInputs.includes("surname") && formData.surname !== ""
-                  ? { border: "1px solid #98E37E" }
-                  : {}
-              }
-              type="text"
-              value={formData.surname}
-              onChange={(e) => handleInputChange(e, "surname")}
-            />
-            {!errorInputs.includes("surname") && formData.surname !== "" && (
-              <img
-                className={styles["correct-vector"]}
-                src={CorrectVector}
-                alt="correct-vector"
+            >
+              გვარი
+            </p>
+            <div className={styles["input-div"]}>
+              <input
+                placeholder="მუმლაძე"
+                className={
+                  errorInputs.includes("surname")
+                    ? `${styles["surname-input"]} ${styles["error-input"]}`
+                    : styles["surname-input"]
+                }
+                style={
+                  !errorInputs.includes("surname") && formData.surname !== ""
+                    ? { border: "1px solid #98E37E" }
+                    : {}
+                }
+                type="text"
+                value={formData.surname}
+                onChange={(e) => handleInputChange(e, "surname")}
               />
-            )}
-            {errorInputs.includes("surname") && (
-              <img
-                className={styles["error-vector"]}
-                src={ErrorVector}
-                alt="error-vector"
-              />
-            )}
+              {!errorInputs.includes("surname") && formData.surname !== "" && (
+                <img
+                  className={styles["correct-vector"]}
+                  src={CorrectVector}
+                  alt="correct-vector"
+                />
+              )}
+              {errorInputs.includes("surname") && (
+                <img
+                  className={styles["error-vector"]}
+                  src={ErrorVector}
+                  alt="error-vector"
+                />
+              )}
+            </div>
+            <p className={styles["surname-validation-text"]}>
+              მინიმუმ 2 ასო, ქართული ასოები
+            </p>
           </div>
-          <p className={styles["surname-validation-text"]}>
-            მინიმუმ 2 ასო, ქართული ასოები
-          </p>
         </div>
 
         <div className={styles["personal-image-div"]}>

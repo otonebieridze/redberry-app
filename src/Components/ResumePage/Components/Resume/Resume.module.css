@@ -1,13 +1,18 @@
 .resume {
   width: 822px;
-  height: 100%;
+  min-height: 1080px;
   background-color: white;
   position: relative;
 }
+
+.resume-personal-info {
+  width: 100%;
+  min-height: 345px;
+  background-color: transparent;
+}
 .resume-name-surname {
-  position: absolute;
-  left: 80px;
-  top: 68px;
+  margin-top: 68px;
+  margin-left: 80px;
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 700;
@@ -16,20 +21,21 @@
   background-color: transparent;
   color: #F93B1D;
 }
+.email-p, .phone-p {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+}
 .email-icon, .phone-icon {
-  position: absolute;
-  left: 82.67px;
-  top: 127px;
   background-color: transparent;
   color: #898989;
+  margin-left: 82.67px;
+  margin-top: 20.67px;
 }
 .phone-icon {
-  top: 158px;
+  margin-top: 13.47px;
 }
 .resume-email, .resume-phone {
-  position: absolute;
-  left: 111px;
-  top: 127px;
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 400;
@@ -37,15 +43,11 @@
   line-height: 21px;
   background-color: transparent;
   color: #1A1A1A;
-}
-.resume-phone {
-  top: 158px;
+  margin-left: 11.67px;
 }
 .resume-about-you-title, .resume-experience-title, .resume-education-title {
-  position: absolute;
-  height: 22px;
-  left: 80px;
-  top: 213px;
+  margin-left: 80px;
+  margin-top: 34px;
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 700;
@@ -55,10 +57,12 @@
   color: #F93B1D;
 }
 .resume-about-you-text, .position-description-text, .education-description-text {
-  position: absolute;
   width: 432px;
-  left: 80px;
-  top: 250px;
+  max-height: 125px;
+  overflow-y: auto;
+  margin-left: 80px;
+  margin-top: 15px;
+  margin-bottom: 19px;
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 400;
@@ -78,27 +82,27 @@
   border-radius: 133px;
 }
 .line-1, .line-2 {
-  position: absolute;
   width: 662px;
   height: 0px;
-  right: 80px;
-  top: 341px;
+  margin-top: 50px;
+  margin-left: 80px;
   border: 1px solid #C8C8C8;
 }
-.line-2 {
-  top: 562px;
+
+.resume-experience, .resume-educations {
+  width: 100%;
+  min-height: 200px;
+  background-color: transparent;
 }
 .resume-experience-title {
-  top: 365px;
+  margin-top: 24px;
 }
 .position-description-text {
-  top: 464px;
+  margin-top: 16px;
 }
 .position-employer-p, .college-grade-p {
-  position: absolute;
-  height: 20px;
-  left: 80px;
-  top: 402px;
+  margin-left: 80px;
+  margin-top: 15px;
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 500;
@@ -108,10 +112,9 @@
   color: #1A1A1A;
 }
 .position-date, .college-end-date {
-  position: absolute;
   height: 19px;
-  left: 80px;
-  top: 429px;
+  margin-left: 80px;
+  margin-top: 7px;
   font-family: 'Helvetica Neue';
   font-style: italic;
   font-weight: 400;
@@ -120,20 +123,6 @@
   background-color: transparent;
   color: #919191;
 }
-.resume-education-title {
-  top: 588px;
-}
-.college-grade-p {
-  top: 625px;
-}
-.college-end-date {
-  top: 652px;
-}
-.education-description-text {
-  top: 687px;
-}
-
-
 
 .logo12 {
   background-color: transparent;
@@ -141,5 +130,5 @@
   width: 42px;
   height: 42px;
   left: 78px;
-  top: 994px;
+  bottom: 25px;
 }

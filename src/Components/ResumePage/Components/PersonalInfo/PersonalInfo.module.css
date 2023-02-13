@@ -4,8 +4,9 @@
 
 .personal-info {
   width: 1098px;
-  height: 1080px;
+  min-height: 1080px;
   background-color: #eaeaea;
+  position: relative;
 }
 .vector {
   background: transparent;
@@ -24,14 +25,15 @@
   height: var(--personal-info-header-height);
   background-color: transparent;
   border-bottom: 1px solid #1A1A1A;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   margin: auto;
 }
 .personal-info-title {
-  position: absolute;
   width: 179px;
   height: 29px;
-  left: 149px;
-  top: 47px;
+  margin-bottom: 12px;
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 700;
@@ -41,11 +43,8 @@
   color: #1A1A1A;
 }
 .personal-info-text {
-  position: absolute;
   width: 29px;
   height: 24px;
-  left: 920px;
-  top: 49px;
   font-family: 'Helvetica Neue';
   font-style: normal;
   font-weight: 400;
@@ -54,40 +53,44 @@
   text-align: right;
   background-color: transparent;
   color: #1A1A1A;
+  margin-bottom: 12px;
 }
 
-/* Form */
 form {
-  position: relative;
+  width: 798px;
+  height: 992px;
+  background-color: transparent;
+  margin: auto;
+}
+.name-surname-container {
+  width: 798px;
+  height: 122px;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 70px;
 }
 .name-div, .surname-div, .personal-image-div {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 8px 24px;
   gap: 8px;
-  position: absolute;
-  width: 419px;
+  width: 371px;
   height: 122px;
   background-color: transparent;
-  right: 126px;
-  top: calc(157px - var(--personal-info-header-height));
-}
-.name-div {
-  left: 126px;
 }
 .personal-image-div {
   width: 445px;
   height: 50px;
-  left: 126px;
-  top: calc(325px - var(--personal-info-header-height));
+  margin-top: 54px;
 }
 .personal-image-child-div {
-  width: 400px;
+  width: 420px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: transparent;
+  position: relative;
 }
 .name-title, .surname-title {
   width: 371px;
@@ -180,14 +183,11 @@ form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 8px 24px;
   gap: 8px;
-  position: absolute;
   width: 846px;
   height: 148px;
   background-color: transparent;
-  left: 126px;
-  top: calc(393px - var(--personal-info-header-height));
+  margin-top: 47px;
 }
 .about-you-p {
   width: 798px;
@@ -224,17 +224,10 @@ form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 8px 24px;
   gap: 8px;
-  position: absolute;
   width: 846px;
   height: 122px;
-  left: 126px;
-  top: calc(558px - var(--personal-info-header-height));
   background-color: transparent;
-}
-.phone-div {
-  top: calc(693px - var(--personal-info-header-height));
 }
 .email-p, .phone-p {
   width: 798px;
@@ -285,15 +278,15 @@ form {
   align-items: center;
   padding: 18px 60px;
   gap: 20px;
-  position: absolute;
   width: 151px;
   height: 48px;
-  right: 150px;
-  top: calc(967px - var(--personal-info-header-height));
   background: #6B40E3;
   border-radius: 4px;
   border: none;
   cursor: pointer;
+  position: absolute;
+  bottom: 65px;
+  right: 150px;
 }
 .next-btn-p {
   width: 81px;
